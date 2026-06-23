@@ -172,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function animateCounter(element) {
     const target = parseInt(element.getAttribute('data-target'));
-    const unit = element.getAttribute('data-unit') || '';
     const duration = 2000;
     const startTime = performance.now();
     const startValue = 0;
@@ -185,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const easeOut = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(startValue + (target - startValue) * easeOut);
       
-      element.textContent = current.toLocaleString() + unit;
+      element.textContent = current.toLocaleString() + (target >= 90 && target <= 100 ? '%' : '+');
       
       if (progress < 1) {
         requestAnimationFrame(update);
@@ -514,105 +513,56 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastRenderedProgress = -1;
   // --- Canvas Image Sequence Scrubbing ---
   let isReady = false;
+
   if (heroImage && heroCanvas) heroImage.style.display = 'none';
 
   const frameCount = 600;
   const frames = new Array(frameCount + 1).fill(null);
-  const loadingStatus = new Array(frameCount + 1).fill(0); // 0 = not loaded, 1 = loading, 2 = loaded
-  
-  let loadQueue = [];
-  const maxConcurrentLoads = 3;
-  let activeLoads = 0;
 
-  // Immediately preload first 50 frames with highest priority
-  for (let i = 1; i <= 50; i++) {
-    loadQueue.push(i);
-  }
-  
-  // Progressively queue the rest of the 600 frames
-  for (let i = 51; i <= frameCount; i++) {
-    loadQueue.push(i);
-  }
+  // Preload frame 1 immediately to unlock the UI
+  const firstFrame = new Image();
+  firstFrame.src = 'images/hero-frames/frame-0001.webp';
+  frames[1] = firstFrame;
+  firstFrame.onload = () => {
+    isReady = true;
+    resizeCanvas();
+    if (heroCanvas) heroCanvas.classList.add('ready');
+    if (pageLoader) setTimeout(() => pageLoader.classList.add('loaded'), 300);
+    loadChunks();
+  };
+  firstFrame.onerror = () => { loadChunks(); };
 
-  function processQueue() {
-    if (activeLoads >= maxConcurrentLoads || loadQueue.length === 0) return;
-
-    const index = loadQueue.shift();
-    if (loadingStatus[index] !== 0) {
-      processQueue();
-      return;
-    }
-
-    loadingStatus[index] = 1;
-    activeLoads++;
-
-    const img = new Image();
-    img.src = `images/hero-frames/frame-${index.toString().padStart(4, '0')}.webp`;
-    img.onload = () => {
-      if (typeof img.decode === 'function') {
-        img.decode().then(() => {
-          frames[index] = img;
-          loadingStatus[index] = 2;
-          activeLoads--;
-          
-          if (index === 50 && !isReady) {
-            isReady = true;
-            resizeCanvas();
-            if (heroCanvas) heroCanvas.classList.add('ready');
-            if (pageLoader) {
-              setTimeout(() => {
-                pageLoader.classList.add('loaded');
-              }, 300);
-            }
-          }
-          processQueue();
-        }).catch(() => {
-          frames[index] = img;
-          loadingStatus[index] = 2;
-          activeLoads--;
-          processQueue();
-        });
-      } else {
-        frames[index] = img;
-        loadingStatus[index] = 2;
-        activeLoads--;
-        processQueue();
+  // Load remaining frames in batches of 30 to prevent network/browser freeze
+  function loadChunks() {
+    let current = 2;
+    function loadBatch() {
+      if (current > frameCount) return;
+      let batchPromises = [];
+      for (let i = 0; i < 30 && current <= frameCount; i++, current++) {
+        batchPromises.push(new Promise((resolve) => {
+          const img = new Image();
+          // Use the captured index for the array assignment
+          const frameIdx = current; 
+          img.src = `images/hero-frames/frame-${frameIdx.toString().padStart(4, '0')}.webp`;
+          frames[frameIdx] = img;
+          img.onload = () => {
+             if (isReady) renderFrame();
+             resolve();
+          };
+          img.onerror = resolve;
+        }));
       }
-    };
-    img.onerror = () => {
-      loadingStatus[index] = 0;
-      activeLoads--;
-      processQueue();
-    };
-
-    if (activeLoads < maxConcurrentLoads) {
-      processQueue();
+      Promise.all(batchPromises).then(() => {
+        setTimeout(loadBatch, 5); // 5ms breather between batches
+      });
     }
-  }
-
-  function prioritizeFrames(currentFrame) {
-    const start = Math.max(1, currentFrame - 15);
-    const end = Math.min(frameCount, currentFrame + 40);
-
-    let priorityItems = [];
-    for (let i = start; i <= end; i++) {
-      if (loadingStatus[i] === 0) {
-        priorityItems.push(i);
-      }
-    }
-
-    if (priorityItems.length > 0) {
-      loadQueue = loadQueue.filter(item => !priorityItems.includes(item));
-      loadQueue = [...priorityItems, ...loadQueue];
-      processQueue();
-    }
+    loadBatch();
   }
 
   function resizeCanvas() {
     if (!heroCanvas) return;
-    const dpr = Math.min(2, window.devicePixelRatio || 1);
-    heroCanvas.width = heroCanvas.clientWidth * dpr;
-    heroCanvas.height = heroCanvas.clientHeight * dpr;
+    heroCanvas.width = window.innerWidth;
+    heroCanvas.height = window.innerHeight;
     renderFrame();
   }
   
@@ -628,19 +578,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 4000);
 
-  // Start sequential progressive loading
-  processQueue();
-
   function renderFrame() {
     if (!heroCtx || !isReady) return;
     
+    // Map progress (0 to 1) to frame index (1 to 600)
     let frameIndex = Math.floor(smoothProgress * (frameCount - 1)) + 1;
     frameIndex = Math.max(1, Math.min(frameCount, frameIndex));
 
-    prioritizeFrames(frameIndex);
-
     let imgToDraw = frames[frameIndex];
 
+    // If the exact frame isn't completely loaded yet, fallback to the most recent completely loaded frame
     if (!imgToDraw || !imgToDraw.complete || imgToDraw.naturalWidth === 0) {
       for (let i = frameIndex; i >= 1; i--) {
         if (frames[i] && frames[i].complete && frames[i].naturalWidth > 0) {
@@ -650,6 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Abort if absolutely no frames are loaded yet
     if (!imgToDraw || !imgToDraw.complete || imgToDraw.naturalWidth === 0) return;
 
     const canvasW = heroCanvas.width;
@@ -761,9 +709,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run tick loop at native refresh rate (60Hz / 120Hz / 144Hz)
     function tick() {
       if (isReady) {
-        // Only calculate and render if the user is actually near the hero section (entire 1200vh height + buffer)
-        const scrollLimit = (heroScrollWrapper ? heroScrollWrapper.offsetHeight : window.innerHeight * 12) + window.innerHeight;
-        if (window.scrollY < scrollLimit) {
+        // Only calculate and render if the user is actually near the hero section
+        if (window.scrollY < window.innerHeight * 5) {
           // Cubic/kinetic linear interpolation (lerp) - 0.04 creates exactly a ~0.5s delay
           smoothProgress += (targetProgress - smoothProgress) * 0.04;
           
@@ -894,36 +841,30 @@ document.addEventListener('DOMContentLoaded', () => {
 const cards = document.querySelectorAll('.carousel-card');
 
 const products = [
-  {
-    title: "Solar Installation",
-    text: "Premium residential and commercial rooftop solar panel installations optimized for maximum generation, longevity, and efficiency."
-  },
-  {
-    title: "Hybrid Systems",
-    text: "Seamless integration of solar generation with high-performance battery storage systems, offering total energy independence and black-out protection."
-  },
-  {
-    title: "EV Chargers",
-    text: "Fast and smart Level 2 vehicle charging infrastructure installed at your home, office, or public fleet locations."
-  },
-  {
-    title: "Energy Auditing",
-    text: "Detailed utility load diagnostics and thermal imaging audits to locate energy leaks, optimize loads, and estimate ROI."
-  },
-  {
-    title: "Wind Energy",
-    text: "Micro-wind turbine integration, assessment, and custom design for locations with high average wind currents."
-  },
-  {
-    title: "Maintenance Services",
-    text: "Regular inspection, thermal panel analysis, professional washing, wiring checkups, and inverter safety verification."
-  }
+{
+title:"Product 1",
+text:"Description for Product 1."
+},
+{
+title:"Product 2",
+text:"Description for Product 2."
+},
+{
+title:"Product 3",
+text:"Description for Product 3."
+},
+{
+title:"Product 4",
+text:"Description for Product 4."
+}
 ];
 
 let active = 0;
 
 function updateCarousel(){
+
     cards.forEach((card,index)=>{
+
         let offset = index - active;
 
         if(offset < -2) offset += cards.length;
@@ -933,110 +874,55 @@ function updateCarousel(){
         let opacity = 0;
 
         switch(offset){
+
             case 0:
-                transform = 'translate(-50%,-50%) translateZ(150px) scale(1)';
+                transform =
+                'translate(-50%,-50%) translateZ(150px) scale(1)';
                 opacity = 1;
             break;
 
             case -1:
-                transform = 'translate(-50%,-50%) translateX(-320px) rotateY(35deg) scale(.85)';
+                transform =
+                'translate(-50%,-50%) translateX(-320px) rotateY(35deg) scale(.85)';
                 opacity = .6;
             break;
 
             case 1:
-                transform = 'translate(-50%,-50%) translateX(320px) rotateY(-35deg) scale(.85)';
+                transform =
+                'translate(-50%,-50%) translateX(320px) rotateY(-35deg) scale(.85)';
                 opacity = .6;
             break;
 
             default:
-                transform = 'translate(-50%,-50%) translateZ(-300px) scale(.7)';
+                transform =
+                'translate(-50%,-50%) translateZ(-300px) scale(.7)';
                 opacity = 0;
         }
 
         card.style.transform = transform;
         card.style.opacity = opacity;
         card.style.zIndex = 100 - Math.abs(offset);
+
     });
 
-    const titleEl = document.getElementById('cDetailTitle');
-    const textEl = document.getElementById('cDetailText');
-    if (titleEl) titleEl.textContent = products[active].title;
-    if (textEl) textEl.textContent = products[active].text;
+    document.getElementById('cDetailTitle').textContent =
+    products[active].title;
+
+    document.getElementById('cDetailText').textContent =
+    products[active].text;
 }
 
-cards.forEach((card, index) => {
-    card.addEventListener('click', () => {
-        if (active !== index) {
-            active = index;
-            updateCarousel();
-        }
-    });
-});
+document.getElementById('cNext').onclick = () => {
+    active = (active + 1) % cards.length;
+    updateCarousel();
+};
 
-const nextBtn = document.getElementById('cNext');
-const prevBtn = document.getElementById('cPrev');
-
-if (nextBtn) {
-    nextBtn.onclick = () => {
-        active = (active + 1) % cards.length;
-        updateCarousel();
-    };
-}
-
-if (prevBtn) {
-    prevBtn.onclick = () => {
-        active = (active - 1 + cards.length) % cards.length;
-        updateCarousel();
-    };
-}
+document.getElementById('cPrev').onclick = () => {
+    active = (active - 1 + cards.length) % cards.length;
+    updateCarousel();
+};
 
 updateCarousel();
-})();
-
-// ============================================
-// TESTIMONIALS SLIDER
-// ============================================
-(function() {
-  const slides = document.querySelectorAll('.testimonial-slide');
-  const track = document.getElementById('tTrack');
-  const prevBtn = document.getElementById('tPrev');
-  const nextBtn = document.getElementById('tNext');
-  
-  if (!track || slides.length === 0) return;
-  
-  let currentSlide = 0;
-  
-  function updateSlider() {
-    slides.forEach((slide, idx) => {
-      slide.classList.toggle('active', idx === currentSlide);
-    });
-    const offset = -currentSlide * 100;
-    track.style.transform = `translate3d(${offset}%, 0, 0)`;
-    
-    // Toggle button disable states for a premium, non-infinite slider feel
-    if (prevBtn) prevBtn.style.opacity = currentSlide === 0 ? '0.3' : '1';
-    if (nextBtn) nextBtn.style.opacity = currentSlide === slides.length - 1 ? '0.3' : '1';
-  }
-  
-  if (nextBtn) {
-    nextBtn.onclick = () => {
-      if (currentSlide < slides.length - 1) {
-        currentSlide++;
-        updateSlider();
-      }
-    };
-  }
-  
-  if (prevBtn) {
-    prevBtn.onclick = () => {
-      if (currentSlide > 0) {
-        currentSlide--;
-        updateSlider();
-      }
-    };
-  }
-  
-  updateSlider();
 })();
 
 });
@@ -1355,59 +1241,4 @@ updateCarousel();
       emptyMsg.classList.toggle('show', visible === 0);
     }
   }
-})();
-
-// ============================================
-// PROJECT GALLERY LIGHTBOX
-// ============================================
-(function() {
-  const lightbox = document.getElementById('lightboxModal');
-  const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxCaption = document.getElementById('lightboxCaption');
-  const lightboxClose = document.getElementById('lightboxClose');
-  const galleryItems = document.querySelectorAll('.gallery-item');
-
-  if (!lightbox || !lightboxImg || !lightboxCaption || !lightboxClose) return;
-
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const title = item.querySelector('h4');
-      const subtitle = item.querySelector('span');
-
-      if (img) {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        
-        let captionHTML = '';
-        if (title) captionHTML += `<h4>${title.textContent}</h4>`;
-        if (subtitle) captionHTML += `<span>${subtitle.textContent}</span>`;
-        lightboxCaption.innerHTML = captionHTML;
-
-        lightbox.classList.add('active');
-        lightbox.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    lightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  lightboxClose.addEventListener('click', closeLightbox);
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-      closeLightbox();
-    }
-  });
 })();

@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flyby Power - Expert solar installation, preventive maintenance, energy auditing, EV charger installation, technical training, and wind energy solutions for homes, businesses, and institutions.">
+  <meta name="keywords" content="solar panels, renewable energy, EV charger installation, energy audit, wind energy, solar maintenance, Flyby Power">
+  <title>Flyby Power | Powering a Cleaner Future with Renewable Energy Solutions</title>
+  <link rel="preload" href="images/hero-bg.png" as="image">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- PAGE LOADER -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-content">
+      <div class="loader-icon"></div>
+      <div class="loader-text">FLYBY POWER</div>
+      <div class="loader-subtext" id="loaderSubtext" style="color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 10px; font-family: sans-serif; letter-spacing: 0.05em;">Loading experience... 0%</div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#home" class="nav-logo" id="navLogo">
+        <img src="images/logo.png" class="nav-logo-img" alt="Flyby Power">
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#solar">Solar Solutions</a>
+        <a href="#maintenance">Maintenance</a>
+        <a href="#ev-chargers">EV Chargers</a>
+        <a href="#training">Training</a>
+        <a href="#contact" class="nav-cta">Contact Us</a>
+      </div>
+      <div class="nav-hamburger" id="navHamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       HERO SECTION (Scroll-driven, 400vh wrapper)
+       ============================================ -->
+  <div class="hero-scroll-wrapper" id="heroScrollWrapper">
+    <section class="hero" id="home">
+      <div class="hero-bg" id="heroBg">
+        <img src="images/hero-bg.png" alt="Modern home with solar panels at sunset" loading="eager" id="heroImage">
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+      </div>
+      <div class="hero-overlay" id="heroOverlay"></div>
+
+      <!-- Animated particles -->
+      <div class="hero-particles" id="heroParticles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+
+      <!-- Energy flow lines -->
+      <div class="hero-energy-lines" id="heroEnergyLines">
+        <div class="energy-line"></div>
+        <div class="energy-line"></div>
+        <div class="energy-line"></div>
+      </div>
+
+      <!-- Sun glow -->
+      <div class="hero-sun-glow" id="heroSunGlow"></div>
+
+      <!-- Solar panel glow -->
+      <div class="hero-panel-glow" id="heroPanelGlow"></div>
+
+      <div class="hero-content" id="heroContent">
+        <div class="hero-eyebrow" id="heroEyebrow">
+          <span class="hero-badge-dot"></span>
+          Solar • Wind • EV Charging
+        </div>
+        <h1 id="heroHeading">Powering a <span class="highlight">Cleaner Future</span> with Renewable Energy Solutions</h1>
+        <p class="hero-subtitle" id="heroSubtitle">Expert solar installation, preventive maintenance, energy auditing, EV charger installation, technical training, and wind energy solutions for homes, businesses, and institutions.</p>
+        <div class="hero-buttons" id="heroButtons">
+          <a href="#contact" class="btn btn-primary" id="heroBtnPrimary">
+            <i data-lucide="phone" style="width:18px;height:18px"></i>
+            Get a Free Consultation
+          </a>
+          <a href="#services" class="btn btn-secondary" id="heroBtnSecondary">
+            <i data-lucide="arrow-down-circle" style="width:18px;height:18px"></i>
+            Explore Our Services
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-scroll-indicator" id="heroScrollIndicator">
+        <div class="scroll-mouse"></div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================
+       ENERGY FLOW ANIMATION STRIP
+       ============================================ -->
+  <div class="energy-flow-section">
+    <div class="container">
+      <div class="energy-flow-container">
+        <div class="energy-node reveal stagger-1">
+          <div class="energy-node-icon">☀️</div>
+          <div class="energy-node-label">Sunlight</div>
+        </div>
+        <div class="energy-arrow reveal stagger-2">→</div>
+        <div class="energy-node reveal stagger-2">
+          <div class="energy-node-icon">🔋</div>
+          <div class="energy-node-label">Solar Panels</div>
+        </div>
+        <div class="energy-arrow reveal stagger-3">→</div>
+        <div class="energy-node reveal stagger-3">
+          <div class="energy-node-icon">⚡</div>
+          <div class="energy-node-label">Clean Energy</div>
+        </div>
+        <div class="energy-arrow reveal stagger-4">→</div>
+        <div class="energy-node reveal stagger-4">
+          <div class="energy-node-icon">🏠</div>
+          <div class="energy-node-label">Homes</div>
+        </div>
+        <div class="energy-arrow reveal stagger-5">→</div>
+        <div class="energy-node reveal stagger-5">
+          <div class="energy-node-icon">🏢</div>
+          <div class="energy-node-label">Businesses</div>
+        </div>
+        <div class="energy-arrow reveal stagger-6">→</div>
+        <div class="energy-node reveal stagger-6">
+          <div class="energy-node-icon">🚗</div>
+          <div class="energy-node-label">EV Charging</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       ABOUT SECTION
+       ============================================ -->
+  <section class="section section-white" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <div class="section-label reveal">
+            About Flyby Power
+          </div>
+          <h2 class="reveal">Your Trusted Partner in <span style="color: var(--color-green-500);">Renewable Energy</span></h2>
+          <p class="reveal">We help homes, businesses, and institutions shift toward clean and reliable energy. From solar panel installation to preventive maintenance, EV charging infrastructure, energy auditing, technical training, and wind energy solutions — our services are designed to reduce energy costs and improve efficiency.</p>
+          <div class="about-features">
+            <div class="about-feature reveal stagger-1">
+              <div class="about-feature-icon">
+                <i data-lucide="sun" style="width:20px;height:20px;color:white"></i>
+              </div>
+              <span>Solar Experts</span>
+            </div>
+            <div class="about-feature reveal stagger-2">
+              <div class="about-feature-icon">
+                <i data-lucide="shield-check" style="width:20px;height:20px;color:white"></i>
+              </div>
+              <span>Certified Team</span>
+            </div>
+            <div class="about-feature reveal stagger-3">
+              <div class="about-feature-icon">
+                <i data-lucide="trending-up" style="width:20px;height:20px;color:white"></i>
+              </div>
+              <span>Cost Savings</span>
+            </div>
+            <div class="about-feature reveal stagger-4">
+              <div class="about-feature-icon">
+                <i data-lucide="leaf" style="width:20px;height:20px;color:white"></i>
+              </div>
+              <span>Eco-Friendly</span>
+            </div>
+            <div class="about-feature reveal stagger-5">
+              <div class="about-feature-icon">
+                <i data-lucide="wrench" style="width:20px;height:20px;color:white"></i>
+              </div>
+              <span>Maintenance</span>
+            </div>
+            <div class="about-feature reveal stagger-6">
+              <div class="about-feature-icon">
+                <i data-lucide="zap" style="width:20px;height:20px;color:white"></i>
+              </div>
+              <span>EV Solutions</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual reveal-right">
+          <div class="about-image-wrapper">
+            <img src="images/solar-installation.png" alt="Professional solar panel installation by Flyby Power team" loading="lazy" decoding="async">
+          </div>
+          <div class="about-stats">
+            <div class="about-stat reveal stagger-2">
+              <div class="about-stat-number counter" data-target="500" data-unit="+">0</div>
+              <div class="about-stat-label">Installations</div>
+            </div>
+            <div class="about-stat reveal stagger-3">
+              <div class="about-stat-number counter" data-target="98" data-unit="%">0</div>
+              <div class="about-stat-label">% Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SERVICES SECTION
+       ============================================ -->
+  <section class="section section-light" id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Our Services</div>
+        <h2 class="section-title reveal">Comprehensive <span class="text-gradient">Renewable Energy</span> Solutions</h2>
+        <p class="section-desc reveal">From solar panel installation to EV charging — we provide end-to-end clean energy services for residential, commercial, and institutional clients.</p>
+      </div>
+      
+      <div class="services-grid">
+        <!-- Residential Solar Installation -->
+        <div class="service-card reveal stagger-1">
+          <div class="service-icon">
+            <i data-lucide="home" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>Residential Solar Installation</h3>
+          <p>Custom rooftop solar solutions to lower home utility bills, customized to your roof configuration and energy needs.</p>
+          <div class="service-tags">
+            <span class="service-tag">Rooftop</span>
+            <span class="service-tag">Home Energy</span>
+            <span class="service-tag">Savings</span>
+          </div>
+        </div>
+
+        <!-- Commercial Solar Installation -->
+        <div class="service-card reveal stagger-2">
+          <div class="service-icon">
+            <i data-lucide="building-2" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>Commercial Solar Installation</h3>
+          <p>Lower operating costs for warehouses, offices, factories, and schools with large-scale solar installations.</p>
+          <div class="service-tags">
+            <span class="service-tag">Offices</span>
+            <span class="service-tag">Industrial</span>
+            <span class="service-tag">Scalable</span>
+          </div>
+        </div>
+
+        <!-- On-Grid Solar Systems -->
+        <div class="service-card reveal stagger-3">
+          <div class="service-icon">
+            <i data-lucide="zap" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>On-Grid Solar Systems</h3>
+          <p>Direct grid-connected systems that let you export excess solar energy and credit it against your utility bills.</p>
+          <div class="service-tags">
+            <span class="service-tag">Net Metering</span>
+            <span class="service-tag">No Batteries</span>
+            <span class="service-tag">Efficient</span>
+          </div>
+        </div>
+
+        <!-- Hybrid Solar Systems -->
+        <div class="service-card reveal stagger-1">
+          <div class="service-icon">
+            <i data-lucide="battery-charging" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>Hybrid Solar Systems</h3>
+          <p>Combine grid connections with smart battery storage for reliable backup power during outages day or night.</p>
+          <div class="service-tags">
+            <span class="service-tag">Battery Storage</span>
+            <span class="service-tag">Backup</span>
+            <span class="service-tag">Independence</span>
+          </div>
+        </div>
+
+        <!-- EV Charger Installation -->
+        <div class="service-card reveal stagger-2">
+          <div class="service-icon">
+            <i data-lucide="plug-zap" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>EV Charger Installation</h3>
+          <p>Fast, safe EV charging stations installed at your residence, office parking, or public commercial hubs.</p>
+          <div class="service-tags">
+            <span class="service-tag">Level 2</span>
+            <span class="service-tag">Smart Charging</span>
+            <span class="service-tag">Fleet</span>
+          </div>
+        </div>
+
+        <!-- Operation & Preventive Maintenance -->
+        <div class="service-card reveal stagger-3">
+          <div class="service-icon">
+            <i data-lucide="wrench" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>Operation & Preventive Maintenance</h3>
+          <p>Regular panel cleaning, safety inspections, wiring diagnostics, and inverter health checks for peak output.</p>
+          <div class="service-tags">
+            <span class="service-tag">Cleaning</span>
+            <span class="service-tag">Diagnostics</span>
+            <span class="service-tag">Warranty</span>
+          </div>
+        </div>
+
+        <!-- Energy Auditing -->
+        <div class="service-card reveal stagger-1">
+          <div class="service-icon">
+            <i data-lucide="bar-chart-3" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>Energy Auditing</h3>
+          <p>Engineering-grade audits to measure load efficiency, detect power leaks, and outline energy optimization strategies.</p>
+          <div class="service-tags">
+            <span class="service-tag">Analysis</span>
+            <span class="service-tag">Waste Detection</span>
+            <span class="service-tag">ROI Reports</span>
+          </div>
+        </div>
+
+        <!-- Technical Training -->
+        <div class="service-card reveal stagger-2">
+          <div class="service-icon">
+            <i data-lucide="graduation-cap" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>Technical Training</h3>
+          <p>Practical hand-on certification courses covering solar installation practices, safety protocols, and operations.</p>
+          <div class="service-tags">
+            <span class="service-tag">Hands-on</span>
+            <span class="service-tag">Certification</span>
+            <span class="service-tag">Vocational</span>
+          </div>
+        </div>
+
+        <!-- Wind Energy Solutions -->
+        <div class="service-card reveal stagger-3">
+          <div class="service-icon">
+            <i data-lucide="wind" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          </div>
+          <h3>Wind Energy Solutions</h3>
+          <p>Micro-turbine wind systems and feasibility assessments for rural, agricultural, and institutional properties.</p>
+          <div class="service-tags">
+            <span class="service-tag">Micro-turbines</span>
+            <span class="service-tag">Feasibility</span>
+            <span class="service-tag">Off-grid</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SOLAR SOLUTIONS SECTION
+       ============================================ -->
+  <section class="section section-white" id="solar">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Solar Solutions</div>
+        <h2 class="section-title reveal">Solar Solutions for <span class="text-gradient">Homes and Businesses</span></h2>
+        <p class="section-desc reveal">We provide complete solar panel installation for both residential and commercial spaces, delivering reliable clean energy that reduces your electricity costs.</p>
+      </div>
+
+      <div class="solar-showcase">
+        <div class="solar-card reveal stagger-1">
+          <div class="solar-card-image">
+            <img src="images/solar-residential.png" alt="Residential solar panel installation on modern home" loading="lazy" decoding="async">
+            <span class="solar-card-badge">Residential</span>
+          </div>
+          <div class="solar-card-content">
+            <h3>Residential Solar</h3>
+            <p>Reduce home electricity bills with reliable rooftop solar systems designed specifically for your home's energy needs and roof configuration.</p>
+          </div>
+        </div>
+
+        <div class="solar-card reveal stagger-2">
+          <div class="solar-card-image">
+            <img src="images/solar-commercial.png" alt="Commercial solar panel installation on business building" loading="lazy" decoding="async">
+            <span class="solar-card-badge">Commercial</span>
+          </div>
+          <div class="solar-card-content">
+            <h3>Commercial Solar</h3>
+            <p>Lower operational costs for offices, shops, industries, schools, and institutions with professionally designed solar energy systems.</p>
+          </div>
+        </div>
+
+        <div class="solar-card reveal stagger-3">
+          <div class="solar-card-image">
+            <img src="images/hero-bg.png" alt="On-grid and hybrid solar systems" loading="lazy" decoding="async">
+            <span class="solar-card-badge">Hybrid</span>
+          </div>
+          <div class="solar-card-content">
+            <h3>On-grid & Hybrid Systems</h3>
+            <p>Choose grid-connected solar or hybrid systems with backup support based on your energy needs and budget requirements.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flyby Savings Calculator -->
+      <div class="reveal calculator-section">
+        <div class="calculator-header">
+          <h2 class="calculator-title">Flyby Savings Calculator</h2>
+          <p class="calculator-subtitle">Calculate your financial trajectory. Adjust the sliders to match your home energy requirements and estimate your 25-year returns.</p>
+        </div>
+        
+        <div class="calculator-grid">
+          <!-- Left panel: Inputs/Sliders -->
+          <div class="calc-panel calc-inputs-panel">
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <span class="calc-input-label">Current Monthly Energy Bill</span>
+                <span class="calc-value-display" id="billVal">$270</span>
+              </div>
+              <input type="range" id="billRange" min="50" max="600" value="270" class="calc-slider">
+              <div class="calc-range-labels">
+                <span>$50</span>
+                <span>$600</span>
+              </div>
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <span class="calc-input-label">Daily Sun Hours (Region Average)</span>
+                <span class="calc-value-display" id="sunVal">4 hrs</span>
+              </div>
+              <input type="range" id="sunRange" min="2" max="8" value="4" class="calc-slider">
+              <div class="calc-range-labels">
+                <span>2 hrs (Low)</span>
+                <span>8 hrs (High)</span>
+              </div>
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label-row">
+                <span class="calc-input-label">Estimated System Size</span>
+                <span class="calc-value-display" id="sizeVal">15 kW</span>
+              </div>
+              <input type="range" id="sizeRange" min="3" max="25" value="15" class="calc-slider">
+              <div class="calc-range-labels">
+                <span>3 kW</span>
+                <span>25 kW</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right panel: Results Card -->
+          <div class="calc-panel calc-results-panel">
+            <div class="results-content">
+              <span class="results-label">Estimated Annual Savings</span>
+              <h3 class="results-value" id="annualSavingsVal">$2,733</h3>
+              <p class="results-subtext">Based on your local system capacity and sun exposure.</p>
+              
+              <div class="results-divider"></div>
+              
+              <div class="results-footer">
+                <div class="results-footer-item">
+                  <span class="footer-label">Payback Period</span>
+                  <span class="footer-value" id="paybackVal">10.8 Years</span>
+                </div>
+                <div class="results-footer-item">
+                  <span class="footer-label">Project IRR</span>
+                  <span class="footer-value" id="irrVal">7.8%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MAINTENANCE SECTION
+       ============================================ -->
+  <section class="section section-grey" id="maintenance">
+    <div class="container">
+      <div class="maintenance-grid">
+        <div class="maintenance-visual reveal-left">
+          <div class="maintenance-panel-compare" id="panelCompare" style="--exposure: 50%;">
+            <div class="panel-dirty">
+              <div class="panel-label">Before Maintenance<span>Dusty & Inefficient</span></div>
+            </div>
+            <div class="panel-clean" id="panelClean">
+              <div class="panel-label">After Maintenance<span>Clean & Efficient</span></div>
+            </div>
+            <!-- Interactive Slider Input -->
+            <input type="range" min="0" max="100" value="50" class="compare-slider" id="compareSlider" aria-label="Before after comparison slider">
+            <!-- Split Line / Handle -->
+            <div class="compare-handle" id="compareHandle">
+              <div class="compare-handle-button">
+                <i data-lucide="chevrons-left-right" style="width:16px;height:16px;color:var(--color-navy-500)"></i>
+              </div>
+            </div>
+            <div class="efficiency-meter">
+              <div class="efficiency-value" id="efficiencyValue">65%</div>
+              <div class="efficiency-label">System Efficiency</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="maintenance-content reveal-right">
+          <div class="section-label">Maintenance</div>
+          <h3>Keep Your Solar System Performing at Its Best</h3>
+          <p>Solar systems need regular care to deliver maximum efficiency. Our operation and preventive maintenance services ensure your solar investment continues to generate optimal returns year after year.</p>
+          <div class="maintenance-list">
+            <div class="maintenance-item reveal stagger-1">
+              <div class="maintenance-item-icon">
+                <i data-lucide="sparkles" style="width:14px;height:14px"></i>
+              </div>
+              Panel Cleaning
+            </div>
+            <div class="maintenance-item reveal stagger-2">
+              <div class="maintenance-item-icon">
+                <i data-lucide="cpu" style="width:14px;height:14px"></i>
+              </div>
+              Inverter Checks
+            </div>
+            <div class="maintenance-item reveal stagger-3">
+              <div class="maintenance-item-icon">
+                <i data-lucide="cable" style="width:14px;height:14px"></i>
+              </div>
+              Wiring Inspection
+            </div>
+            <div class="maintenance-item reveal stagger-4">
+              <div class="maintenance-item-icon">
+                <i data-lucide="activity" style="width:14px;height:14px"></i>
+              </div>
+              Performance Monitoring
+            </div>
+            <div class="maintenance-item reveal stagger-5">
+              <div class="maintenance-item-icon">
+                <i data-lucide="alert-triangle" style="width:14px;height:14px"></i>
+              </div>
+              Fault Detection
+            </div>
+            <div class="maintenance-item reveal stagger-6">
+              <div class="maintenance-item-icon">
+                <i data-lucide="file-text" style="width:14px;height:14px"></i>
+              </div>
+              Health Reports
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       INSTALLATION PROCESS TIMELINE
+       ============================================ -->
+  <section class="section section-light" id="process">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Installation Process</div>
+        <h2 class="section-title reveal">How We Power Your <span class="text-gradient">Home & Business</span></h2>
+        <p class="section-desc reveal">A streamlined, professional four-step journey to clean, reliable energy independence.</p>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-track"></div>
+        <div class="timeline-grid">
+          
+          <!-- Step 1 -->
+          <div class="timeline-card reveal stagger-1">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-number">01</div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h3>Site Assessment</h3>
+              <p>We evaluate your location's sun/wind exposure, inspect roof structures, analyze electricity loads, and map orientation angles.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-card reveal stagger-2">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-number">02</div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h3>System Design</h3>
+              <p>Our engineers model wire paths, specify optimum array placement, choose inverters, and draft engineering schematics.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-card reveal stagger-3">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-number">03</div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h3>Installation</h3>
+              <p>Certified crews secure structural brackets, mount modules, wire grid-tie junctions, and commission the connection.</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-card reveal stagger-4">
+            <div class="timeline-badge-wrapper">
+              <div class="timeline-number">04</div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-content">
+              <h3>Monitoring & Support</h3>
+              <p>We configure remote monitoring web applications, explain real-time metrics, and establish maintenance schedules.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRODUCT SUITE (Circular Carousel)
+       ============================================ -->
+  <section class="carousel-section">
+
+      <div class="carousel-title">
+          <h2>Our Solutions</h2>
+          <p>Renewable energy systems built for the future.</p>
+      </div>
+
+      <div class="carousel">
+
+          <div class="carousel-card card">
+              <div class="carousel-card-inner">
+                  <div class="carousel-content">
+                      <div class="carousel-tag">Solar</div>
+                      <h3>Solar Installation</h3>
+                      <p>Premium installations tailored for maximum roof performance.</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="carousel-card card">
+              <div class="carousel-card-inner">
+                  <div class="carousel-content">
+                      <div class="carousel-tag">Storage</div>
+                      <h3>Hybrid Systems</h3>
+                      <p>Combine grid connectivity with smart backup battery capacity.</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="carousel-card card">
+              <div class="carousel-card-inner">
+                  <div class="carousel-content">
+                      <div class="carousel-tag">Mobility</div>
+                      <h3>EV Chargers</h3>
+                      <p>Level 2 fast chargers for single homes and fleet locations.</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="carousel-card card">
+              <div class="carousel-card-inner">
+                  <div class="carousel-content">
+                      <div class="carousel-tag">Analysis</div>
+                      <h3>Energy Auditing</h3>
+                      <p>Detailed building diagnostics to find power waste and save costs.</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="carousel-card card">
+              <div class="carousel-card-inner">
+                  <div class="carousel-content">
+                      <div class="carousel-tag">Turbines</div>
+                      <h3>Wind Energy</h3>
+                      <p>Clean wind power solutions tailored for appropriate climates.</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="carousel-card card">
+              <div class="carousel-card-inner">
+                  <div class="carousel-content">
+                      <div class="carousel-tag">Diagnostics</div>
+                      <h3>Maintenance Services</h3>
+                      <p>Ongoing checkups, cleaning, and electrical tests for longevity.</p>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="carousel-controls">
+          <button class="carousel-btn" id="cPrev">←</button>
+          <button class="carousel-btn" id="cNext">→</button>
+      </div>
+
+      <div class="carousel-details">
+          <h3 id="cDetailTitle">Solar Installation</h3>
+          <p id="cDetailText">
+              Premium residential & commercial rooftop solar panel installations optimized for maximum generation, longevity, and efficiency.
+          </p>
+      </div>
+
+  </section>
+
+  <!-- ============================================
+       BRANDS SECTION
+       ============================================ -->
+  <section class="section brands-section section-dark" id="brands">
+    <div class="container">
+      
+      <div class="brands-hero">
+        <div>
+          <p class="hero-label reveal">Our Brand Partners</p>
+          <h2 class="section-title reveal" style="margin-bottom: 12px;">Panels & inverters<br>we <em style="font-style:italic;font-weight:400;color:var(--color-yellow-400);">stand behind</em></h2>
+          <p class="section-desc reveal">We source only from manufacturers we trust — vetted for efficiency, warranty track record, and long-term reliability.</p>
+        </div>
+        <div class="brands-stats reveal stagger-1">
+          <span class="stat-num">8</span>
+          <span class="stat-label">Trusted Brands</span>
+        </div>
+      </div>
+
+      <div class="legend reveal">
+        <span class="leg"><span class="leg-bar ongrid"></span>On-Grid</span>
+        <span class="leg"><span class="leg-bar hybrid"></span>Hybrid</span>
+        <span class="leg"><span class="leg-bar both"></span>Both</span>
+      </div>
+
+      <div class="filters-wrap reveal">
+        <div class="filter-row">
+          <span class="filter-label">System</span>
+          <span class="pill active-neutral" data-filter="system" data-val="all">All</span>
+          <span class="pill" data-filter="system" data-val="ongrid">
+            <span class="pill-dot" style="background:var(--color-yellow-400)"></span>On-Grid
+          </span>
+          <span class="pill" data-filter="system" data-val="hybrid">
+            <span class="pill-dot" style="background:var(--color-green-400)"></span>Hybrid
+          </span>
+        </div>
+        <div class="filter-row">
+          <span class="filter-label">Product</span>
+          <span class="pill active-neutral" data-filter="product" data-val="all">All</span>
+          <span class="pill" data-filter="product" data-val="panel">☀️ Panels</span>
+          <span class="pill" data-filter="product" data-val="inverter">⚡ Inverters</span>
+        </div>
+      </div>
+
+      <div class="grid-wrap">
+        <div class="brands-grid" id="brandsGrid">
+
+          <!-- PANELS -->
+          <div class="brands-card reveal stagger-1" data-system="both" data-product="panel" data-color="#F2B544">
+            <div class="stripe both"></div>
+            <div class="spot"></div>
+            <div class="card-img" style="background: rgba(242, 181, 68, 0.05);">
+              <span class="placeholder-icon" style="color:var(--color-yellow-400)">◈</span>
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="brand-name">Jinko Solar</span>
+                <span class="brand-tag" style="background:rgba(242, 181, 68, 0.15);color:var(--color-yellow-400)">Panel</span>
+              </div>
+              <p class="card-desc">High-efficiency TOPCon modules with proven performance in hot, humid climates.</p>
+            </div>
+          </div>
+
+          <div class="brands-card reveal stagger-2" data-system="both" data-product="panel" data-color="#3B82F6">
+            <div class="stripe both"></div>
+            <div class="spot"></div>
+            <div class="card-img" style="background: rgba(59, 130, 246, 0.05);">
+              <span class="placeholder-icon" style="color:#3B82F6">◉</span>
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="brand-name">LONGi Solar</span>
+                <span class="brand-tag" style="background:rgba(59, 130, 246, 0.15);color:#3B82F6">Panel</span>
+              </div>
+              <p class="card-desc">World's largest mono-silicon manufacturer — consistent output across seasons.</p>
+            </div>
+          </div>
+
+          <div class="brands-card reveal stagger-3" data-system="ongrid" data-product="panel" data-color="#EF4444">
+            <div class="stripe ongrid"></div>
+            <div class="spot"></div>
+            <div class="card-img" style="background: rgba(239, 68, 68, 0.05);">
+              <span class="placeholder-icon" style="color:#EF4444">◆</span>
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="brand-name">Canadian Solar</span>
+                <span class="brand-tag" style="background:rgba(239, 68, 68, 0.15);color:#EF4444">Panel</span>
+              </div>
+              <p class="card-desc">Bifacial panels ideal for large on-grid rooftop & ground-mount installations.</p>
+            </div>
+          </div>
+
+          <div class="brands-card reveal stagger-4" data-system="hybrid" data-product="panel" data-color="#2BD4C5">
+            <div class="stripe hybrid"></div>
+            <div class="spot"></div>
+            <div class="card-img" style="background: rgba(43, 212, 197, 0.05);">
+              <span class="placeholder-icon" style="color:var(--color-green-400)">◍</span>
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="brand-name">Trina Solar</span>
+                <span class="brand-tag" style="background:rgba(43, 212, 197, 0.15);color:var(--color-green-400)">Panel</span>
+              </div>
+              <p class="card-desc">Vertex series modules engineered for hybrid systems and battery integration.</p>
+            </div>
+          </div>
+
+          <!-- INVERTERS -->
+          <div class="brands-card reveal stagger-1" data-system="hybrid" data-product="inverter" data-color="#0EA5E9">
+            <div class="stripe hybrid"></div>
+            <div class="spot"></div>
+            <div class="card-img" style="background: rgba(14, 165, 233, 0.05);">
+              <span class="placeholder-icon" style="color:#0EA5E9">⌁</span>
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="brand-name">Sungrow</span>
+                <span class="brand-tag" style="background:rgba(14, 165, 233, 0.15);color:#0EA5E9">Inverter</span>
+              </div>
+              <p class="card-desc">Top-ranked hybrid inverter with seamless battery backup and grid switching.</p>
+            </div>
+          </div>
+
+          <div class="brands-card reveal stagger-2" data-system="ongrid" data-product="inverter" data-color="#F2B544">
+            <div class="stripe ongrid"></div>
+            <div class="spot"></div>
+            <div class="card-img" style="background: rgba(242, 181, 68, 0.05);">
+              <span class="placeholder-icon" style="color:var(--color-yellow-400)">⌀</span>
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="brand-name">Fronius</span>
+                <span class="brand-tag" style="background:rgba(242, 181, 68, 0.15);color:var(--color-yellow-400)">Inverter</span>
+              </div>
+              <p class="card-desc">Austrian precision engineering — best-in-class on-grid efficiency and monitoring.</p>
+            </div>
+          </div>
+
+          <div class="brands-card reveal stagger-3" data-system="hybrid" data-product="inverter" data-color="#A855F7">
+            <div class="stripe hybrid"></div>
+            <div class="spot"></div>
+            <div class="card-img" style="background: rgba(168, 85, 247, 0.05);">
+              <span class="placeholder-icon" style="color:#A855F7">⌬</span>
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="brand-name">Growatt</span>
+                <span class="brand-tag" style="background:rgba(168, 85, 247, 0.15);color:#A855F7">Inverter</span>
+              </div>
+              <p class="card-desc">Cost-effective hybrid inverters with a robust app and remote diagnostics.</p>
+            </div>
+          </div>
+
+          <div class="brands-card reveal stagger-4" data-system="ongrid" data-product="inverter" data-color="#6366F1">
+            <div class="stripe ongrid"></div>
+            <div class="spot"></div>
+            <div class="card-img" style="background: rgba(99, 102, 241, 0.05);">
+              <span class="placeholder-icon" style="color:#6366F1">⎍</span>
+            </div>
+            <div class="card-body">
+              <div class="card-header">
+                <span class="brand-name">SMA</span>
+                <span class="brand-tag" style="background:rgba(99, 102, 241, 0.15);color:#6366F1">Inverter</span>
+              </div>
+              <p class="card-desc">German-engineered grid-tied inverter trusted for commercial and utility scale.</p>
+            </div>
+          </div>
+
+          <div class="brands-empty" id="brandsEmptyMsg">No brands match your current filters.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ENERGY AUDIT SECTION
+       ============================================ -->
+  <section class="section section-white" id="energy-audit">
+
+    <div class="container">
+      <div class="audit-dashboard">
+        <div class="audit-content reveal-left">
+          <div class="section-label">Energy Auditing</div>
+          <h3>Understand, Optimize, and <span style="color: var(--color-green-500);">Save Energy</span></h3>
+          <p>Our energy auditing service helps identify where energy is being wasted and how renewable energy solutions can reduce costs. We analyze usage patterns, equipment efficiency, power consumption, and recommend practical improvements.</p>
+          
+          <div class="audit-process-list">
+            <div class="audit-process-item reveal stagger-1">
+              <div class="audit-process-number">1</div>
+              <div class="audit-process-text">Analyze current energy usage patterns</div>
+            </div>
+            <div class="audit-process-item reveal stagger-2">
+              <div class="audit-process-number">2</div>
+              <div class="audit-process-text">Identify energy losses and inefficiencies</div>
+            </div>
+            <div class="audit-process-item reveal stagger-3">
+              <div class="audit-process-number">3</div>
+              <div class="audit-process-text">Evaluate equipment and power consumption</div>
+            </div>
+            <div class="audit-process-item reveal stagger-4">
+              <div class="audit-process-number">4</div>
+              <div class="audit-process-text">Recommend cost-saving improvements</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="audit-visual reveal-right">
+          <div class="audit-chart-container">
+            <div class="audit-chart-header">
+              <div class="audit-chart-title">Energy Analysis Dashboard</div>
+              <div class="audit-chart-badge">Live Data</div>
+            </div>
+            <div class="audit-bars">
+              <div class="audit-bar-group">
+                <div class="audit-bar-label">
+                  <span>Energy Waste Identified</span>
+                  <span class="audit-bar-percent">32%</span>
+                </div>
+                <div class="audit-bar-track">
+                  <div class="audit-bar-fill waste" data-width="32"></div>
+                </div>
+              </div>
+              <div class="audit-bar-group">
+                <div class="audit-bar-label">
+                  <span>Optimization Potential</span>
+                  <span class="audit-bar-percent">78%</span>
+                </div>
+                <div class="audit-bar-track">
+                  <div class="audit-bar-fill optimize" data-width="78"></div>
+                </div>
+              </div>
+              <div class="audit-bar-group">
+                <div class="audit-bar-label">
+                  <span>Projected Savings</span>
+                  <span class="audit-bar-percent">45%</span>
+                </div>
+                <div class="audit-bar-track">
+                  <div class="audit-bar-fill save" data-width="45"></div>
+                </div>
+              </div>
+            </div>
+            <div class="audit-metrics">
+              <div class="audit-metric">
+                <div class="audit-metric-value counter" data-target="32" data-unit="%">0</div>
+                <div class="audit-metric-label">% Waste Found</div>
+              </div>
+              <div class="audit-metric">
+                <div class="audit-metric-value counter" data-target="45" data-unit="%">0</div>
+                <div class="audit-metric-label">% Cost Savings</div>
+              </div>
+              <div class="audit-metric">
+                <div class="audit-metric-value counter" data-target="98" data-unit="%">0</div>
+                <div class="audit-metric-label">% Accuracy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       EV CHARGER SECTION
+       ============================================ -->
+  <section class="section section-light" id="ev-chargers">
+    <div class="container">
+      <div class="ev-grid">
+        <div class="ev-visual reveal-left">
+          <div class="ev-image-wrapper">
+            <img src="images/ev-charger.png" alt="Electric vehicle charging station" loading="lazy" decoding="async">
+            <div class="ev-charge-indicator">
+              <div class="ev-charge-icon">
+                <i data-lucide="zap" style="width:20px;height:20px;color:white"></i>
+              </div>
+              <div class="ev-charge-text">
+                <strong>Charging Active</strong>
+                <span>Fast charging available</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ev-content reveal-right">
+          <div class="section-label">EV Charging</div>
+          <h3>EV Charging Solutions for <span style="color: var(--color-green-500);">Homes and Businesses</span></h3>
+          <p>We install safe and reliable EV charging systems for residential and commercial use. Whether it is a home charger, apartment charging point, office parking charger, or commercial EV charging station, we provide complete installation support.</p>
+          
+          <div class="ev-cards">
+            <div class="ev-card reveal stagger-1">
+              <div class="ev-card-icon">🏠</div>
+              <h4>Home EV Chargers</h4>
+              <p>Convenient charging at your residence with smart energy management and scheduling.</p>
+            </div>
+            <div class="ev-card reveal stagger-2">
+              <div class="ev-card-icon">🏢</div>
+              <h4>Commercial EV Chargers</h4>
+              <p>Charging solutions for offices, malls, parking areas, and businesses with multiple port options.</p>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-outline" style="margin-top: 28px;">
+            <i data-lucide="arrow-right" style="width:18px;height:18px"></i>
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TRAINING SECTION
+       ============================================ -->
+  <section class="section section-dark" id="training">
+    <div class="container">
+      <div class="training-layout">
+        <div class="training-content reveal-left">
+          <div class="section-label">Technical Training</div>
+          <h3>Practical Renewable Energy Training for <span style="color: var(--color-yellow-400);">Students</span></h3>
+          <p>We provide technical training programs for students who want to understand renewable energy systems, solar installation, maintenance, energy auditing, EV charging, and wind energy basics through practical learning.</p>
+          
+          <div class="training-highlights">
+            <div class="training-highlight reveal stagger-1">
+              <span class="training-highlight-icon">
+                <i data-lucide="sun" style="width:18px;height:18px"></i>
+              </span>
+              <span>Solar Technology</span>
+            </div>
+            <div class="training-highlight reveal stagger-2">
+              <span class="training-highlight-icon">
+                <i data-lucide="wrench" style="width:18px;height:18px"></i>
+              </span>
+              <span>Installation Practices</span>
+            </div>
+            <div class="training-highlight reveal stagger-3">
+              <span class="training-highlight-icon">
+                <i data-lucide="settings" style="width:18px;height:18px"></i>
+              </span>
+              <span>Maintenance Basics</span>
+            </div>
+            <div class="training-highlight reveal stagger-4">
+              <span class="training-highlight-icon">
+                <i data-lucide="plug-zap" style="width:18px;height:18px"></i>
+              </span>
+              <span>EV Charging Systems</span>
+            </div>
+            <div class="training-highlight reveal stagger-5">
+              <span class="training-highlight-icon">
+                <i data-lucide="wind" style="width:18px;height:18px"></i>
+              </span>
+              <span>Wind Energy Basics</span>
+            </div>
+            <div class="training-highlight reveal stagger-6">
+              <span class="training-highlight-icon">
+                <i data-lucide="award" style="width:18px;height:18px"></i>
+              </span>
+              <span>Clean Energy Awareness</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="training-visual reveal-right">
+          <div class="training-image-wrapper">
+            <img src="images/training.png" alt="Students in renewable energy technical training" loading="lazy" decoding="async">
+            <div class="training-badge">Enroll Now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       WIND ENERGY SECTION
+       ============================================ -->
+  <section class="section section-white" id="wind-energy">
+    <div class="container">
+      <div class="wind-layout">
+        <div class="wind-visual reveal-left">
+          <div class="wind-image-wrapper">
+            <img src="images/wind-turbines.png" alt="Wind turbines in scenic landscape" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <div class="wind-content reveal-right">
+          <div class="section-label">Wind Energy</div>
+          <h3>Wind Energy <span style="color: var(--color-green-500);">Solutions</span></h3>
+          <p>Along with solar power, we also support wind energy solutions for suitable locations. Our team helps assess feasibility, system requirements, and renewable energy integration possibilities for diverse applications.</p>
+          
+          <div class="wind-applications">
+            <div class="wind-app reveal stagger-1">
+              <span class="wind-app-icon">
+                <i data-lucide="home" style="width:16px;height:16px"></i>
+              </span>
+              Residential
+            </div>
+            <div class="wind-app reveal stagger-2">
+              <span class="wind-app-icon">
+                <i data-lucide="building-2" style="width:16px;height:16px"></i>
+              </span>
+              Commercial
+            </div>
+            <div class="wind-app reveal stagger-3">
+              <span class="wind-app-icon">
+                <i data-lucide="trees" style="width:16px;height:16px"></i>
+              </span>
+              Agricultural
+            </div>
+            <div class="wind-app reveal stagger-4">
+              <span class="wind-app-icon">
+                <i data-lucide="landmark" style="width:16px;height:16px"></i>
+              </span>
+              Institutional
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary" style="margin-top: 28px;">
+            <i data-lucide="phone" style="width:18px;height:18px"></i>
+            Get Wind Energy Consultation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       WHY CHOOSE US SECTION
+       ============================================ -->
+  <section class="section section-dark" id="why-us">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Why Choose Us</div>
+        <h2 class="section-title reveal">Why Choose <span style="color: var(--color-yellow-400);">Flyby Power</span></h2>
+        <p class="section-desc reveal">We are committed to delivering reliable, future-ready renewable energy solutions that make a real difference.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-card reveal stagger-1">
+          <div class="trust-icon">
+            <i data-lucide="sun" style="width:28px;height:28px;color:white"></i>
+          </div>
+          <h4>Renewable Energy Specialists</h4>
+          <p>Deep expertise across solar, wind, and clean energy technologies.</p>
+        </div>
+        <div class="trust-card reveal stagger-2">
+          <div class="trust-icon">
+            <i data-lucide="building-2" style="width:28px;height:28px;color:white"></i>
+          </div>
+          <h4>Residential & Commercial</h4>
+          <p>Solutions tailored for homes, offices, industries, and institutions.</p>
+        </div>
+        <div class="trust-card reveal stagger-3">
+          <div class="trust-icon">
+            <i data-lucide="shield-check" style="width:28px;height:28px;color:white"></i>
+          </div>
+          <h4>On-grid & Hybrid Solutions</h4>
+          <p>Flexible solar systems with grid-connected and backup options.</p>
+        </div>
+        <div class="trust-card reveal stagger-4">
+          <div class="trust-icon">
+            <i data-lucide="wrench" style="width:28px;height:28px;color:white"></i>
+          </div>
+          <h4>Preventive Maintenance</h4>
+          <p>Ongoing support to keep your systems running at peak performance.</p>
+        </div>
+        <div class="trust-card reveal stagger-1">
+          <div class="trust-icon">
+            <i data-lucide="plug-zap" style="width:28px;height:28px;color:white"></i>
+          </div>
+          <h4>EV Charger Installation</h4>
+          <p>Complete EV charging infrastructure for all settings.</p>
+        </div>
+        <div class="trust-card reveal stagger-2">
+          <div class="trust-icon">
+            <i data-lucide="bar-chart-3" style="width:28px;height:28px;color:white"></i>
+          </div>
+          <h4>Energy Auditing</h4>
+          <p>Professional audits for energy optimization and cost savings.</p>
+        </div>
+        <div class="trust-card reveal stagger-3">
+          <div class="trust-icon">
+            <i data-lucide="graduation-cap" style="width:28px;height:28px;color:white"></i>
+          </div>
+          <h4>Technical Training</h4>
+          <p>Hands-on training programs for aspiring energy professionals.</p>
+        </div>
+        <div class="trust-card reveal stagger-4">
+          <div class="trust-icon">
+            <i data-lucide="rocket" style="width:28px;height:28px;color:white"></i>
+          </div>
+          <h4>Future-Ready Solutions</h4>
+          <p>Clean, reliable, and sustainable energy for tomorrow.</p>
+        </div>
+      </div>
+
+      <!-- Counters -->
+      <div class="counter-section">
+        <div class="counter-item reveal stagger-1">
+          <div class="counter-value counter" data-target="500" data-unit="+">0</div>
+          <div class="counter-label">Projects Completed</div>
+        </div>
+        <div class="counter-item reveal stagger-2">
+          <div class="counter-value counter" data-target="15" data-unit=" MW+">0</div>
+          <div class="counter-label">Installed Capacity</div>
+        </div>
+        <div class="counter-item reveal stagger-3">
+          <div class="counter-value counter" data-target="8500" data-unit=" Tons+">0</div>
+          <div class="counter-label">CO₂ Offset</div>
+        </div>
+        <div class="counter-item reveal stagger-4">
+          <div class="counter-value counter" data-target="99" data-unit="%">0</div>
+          <div class="counter-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PARTNERS SECTION
+       ============================================ -->
+  <section class="section partners" id="partners">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Partners</div>
+        <h2 class="section-title reveal">Trusted by teams<br>who set the pace</h2>
+        <p class="section-desc reveal">We build alongside brands across industries — from early-stage products to established names.</p>
+      </div>
+
+      <div class="bs-grid" id="bsGrid">
+        <a class="bs-card reveal stagger-1" href="#" data-color="#378ADD" aria-label="Voltaic">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#378ADD">
+            <svg viewBox="0 0 20 20" fill="currentColor"><polygon points="11,1 3,12 9,12 7,19 17,8 11,8"/></svg>
+            <span>Voltaic</span>
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-2" href="#" data-color="#639922" aria-label="Verdant">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#639922">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 18C4 14 4 6 10 2c6 4 6 12 0 16z"/></svg>
+            <span>Verdant</span>
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-3" href="#" data-color="#7F77DD" aria-label="Cubix">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#7F77DD">
+            <svg viewBox="0 0 20 20" fill="currentColor"><rect x="2" y="6" width="11" height="11" opacity="0.55"/><rect x="7" y="2" width="11" height="11"/></svg>
+            <span>Cubix</span>
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-4" href="#" data-color="#D85A30" aria-label="Ember and Co">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#D85A30">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1c2.5 3.2 4 5 4 8.2A4 4 0 0110 14a4 4 0 01-4-4.8C6 8 6.8 7 7.6 6.3 7.5 8 8.3 9 9.3 8.6 8.6 6 9.2 3 10 1z"/></svg>
+            <span>Ember &amp; Co</span>
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-1" href="#" data-color="#1D9E75" aria-label="Wavelength">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#1D9E75">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 10c2-6 4-6 6 0s4 6 6 0 4-6 6 0"/></svg>
+            <span>Wavelength</span>
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-2" href="#" data-color="#D4537E" aria-label="Lucent">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#D4537E">
+            <svg viewBox="0 0 20 20" fill="currentColor"><polygon points="10,1 19,10 10,19 1,10"/></svg>
+            <span>Lucent</span>
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-3" href="#" data-color="#BA7517" aria-label="Hexel">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#BA7517">
+            <svg viewBox="0 0 20 20" fill="currentColor"><polygon points="10,1 18,5.5 18,14.5 10,19 2,14.5 2,5.5"/></svg>
+            <span>Hexel</span>
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-4" href="#" data-color="#71706B" aria-label="Plume Studio">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#71706B">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M14 2C8 2 4 7 4 13c0 3 2 5 5 5 0-3 0-6 1-9-1 3-1 6 1 8 3-1 5-4 5-8 0-3-1-5-3-6 1 2 1 4 0 5-1-3-2-5 1-6z"/></svg>
+            <span>Plume Studio</span>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       INSTAGRAM REELS SECTION
+       ============================================ -->
+  <section class="section reels-section" id="reels">
+    <!-- Ambient Blur Gradients -->
+    <div class="reels-bg-gradient gradient-left"></div>
+    <div class="reels-bg-gradient gradient-right"></div>
+    
+    <!-- Floating Background Text -->
+    <div class="reels-bg-text">SOLAR • EV • WIND • TRAINING</div>
+
+    <div class="container">
+      <div class="section-header" style="position: relative; z-index: 2;">
+        <div class="section-label reveal">Latest From Our Instagram</div>
+        <h2 class="section-title reveal" style="color: #fff;">See our innovations<br>in action</h2>
+        <p class="section-desc reveal" style="color: rgba(255,255,255,0.7);">See our solar installations, EV charger projects, technical training sessions, and renewable energy innovations in action.</p>
+      </div>
+    </div>
+
+    <!-- Marquee Tracks (Populated by JS) -->
+    <div class="reels-marquee-wrapper reveal-scale">
+      <div class="reels-track" id="reelsTrack1"></div>
+      <div class="reels-track" id="reelsTrack2" style="margin-top: 24px;"></div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TESTIMONIALS SECTION
+       ============================================ -->
+  <section class="section section-light" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Testimonials</div>
+        <h2 class="section-title reveal">What Our <span class="text-gradient">Clients Say</span></h2>
+        <p class="section-desc reveal">Hear from homeowners and businesses who have made the switch to clean energy with Flyby Power.</p>
+      </div>
+
+      <div class="testimonials-slider-wrapper">
+        <div class="testimonials-slider-container">
+          <div class="testimonials-track-slider" id="tTrack">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-slide active">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"Flyby Power installed a 10kW solar system for our home. The team was professional, and we've already seen a 60% reduction in our electricity bills. Highly recommended!"</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">RK</div>
+                <div>
+                  <div class="testimonial-name">Rajesh Kumar</div>
+                  <div class="testimonial-role">Homeowner</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"Their energy audit revealed significant waste in our office building. After implementing their recommendations and installing solar, we cut energy costs by 45%."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">PS</div>
+                <div>
+                  <div class="testimonial-name">Priya Sharma</div>
+                  <div class="testimonial-role">Business Owner</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">"The EV charger installation was seamless. Flyby Power handled everything from site assessment to commissioning. Now I charge my car at home every night."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">AM</div>
+                <div>
+                  <div class="testimonial-name">Anil Mehta</div>
+                  <div class="testimonial-role">EV Owner</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonials-controls">
+          <button class="carousel-btn" id="tPrev">←</button>
+          <button class="carousel-btn" id="tNext">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROJECT GALLERY SECTION
+       ============================================ -->
+  <section class="section section-white" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Our Projects</div>
+        <h2 class="section-title reveal">Project <span class="text-gradient">Gallery</span></h2>
+        <p class="section-desc reveal">Browse through our completed installations and see the quality of our work.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item reveal stagger-1">
+          <img src="images/solar-commercial.png" alt="Commercial solar installation project" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-text">
+              <h4>Commercial Solar Installation</h4>
+              <span>50kW System — Industrial Warehouse</span>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item reveal stagger-2">
+          <img src="images/solar-residential.png" alt="Residential solar installation project" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-text">
+              <h4>Residential Rooftop Solar</h4>
+              <span>10kW System — Modern Home</span>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item reveal stagger-3">
+          <img src="images/ev-charger.png" alt="EV charger installation project" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-text">
+              <h4>EV Charger Installation</h4>
+              <span>Commercial Charging Hub</span>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item reveal stagger-4">
+          <img src="images/solar-installation.png" alt="Solar panel installation in progress" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-text">
+              <h4>Solar Installation Process</h4>
+              <span>Professional Team at Work</span>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item reveal stagger-5">
+          <img src="images/wind-turbines.png" alt="Wind energy project" loading="lazy" decoding="async">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-text">
+              <h4>Wind Energy Solutions</h4>
+              <span>Feasibility Assessment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FAQ SECTION
+       ============================================ -->
+  <section class="section section-grey" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">FAQ</div>
+        <h2 class="section-title reveal">Frequently Asked <span class="text-gradient">Questions</span></h2>
+        <p class="section-desc reveal">Find answers to common questions about our renewable energy services.</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item active reveal stagger-1">
+          <button class="faq-question" id="faq-btn-1">
+            How long does a solar panel installation take?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              A typical residential solar panel installation takes 2-5 days depending on the system size and roof complexity. Commercial installations may take 1-3 weeks. Our team ensures minimal disruption to your daily routine during the installation process.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal stagger-2">
+          <button class="faq-question" id="faq-btn-2">
+            What is the difference between on-grid and hybrid solar systems?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              On-grid systems connect directly to the electricity grid, allowing you to export excess power. Hybrid systems include battery storage for backup power during outages while still being connected to the grid. We help you choose the best option based on your needs and budget.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal stagger-3">
+          <button class="faq-question" id="faq-btn-3">
+            How often do solar panels need maintenance?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              We recommend professional maintenance every 6-12 months, including panel cleaning, inverter checks, wiring inspection, and performance monitoring. Regular maintenance can improve system efficiency by up to 25% and extend the lifespan of your solar system.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal stagger-4">
+          <button class="faq-question" id="faq-btn-4">
+            Can you install EV chargers at my home?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes! We install EV chargers for homes, apartments, offices, and commercial spaces. Our team handles everything from site assessment and electrical evaluation to installation and commissioning. We support all major EV charger brands and types.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal stagger-5">
+          <button class="faq-question" id="faq-btn-5">
+            What does an energy audit include?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Our energy audit includes analysis of current power usage, identification of energy losses, evaluation of equipment efficiency, assessment of power consumption patterns, and personalized recommendations for cost-saving renewable energy solutions.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal stagger-6">
+          <button class="faq-question" id="faq-btn-6">
+            Do you offer training programs for beginners?
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Absolutely! Our technical training programs are designed for students and beginners who want to learn about solar technology, installation practices, maintenance basics, EV charging systems, and wind energy fundamentals through hands-on, practical sessions.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA SECTION
+       ============================================ -->
+  <section class="cta-section" id="cta">
+    <div class="cta-bg"></div>
+    <div class="container">
+      <div class="cta-content reveal-scale">
+        <h2>Ready to Generate Your Own Power?</h2>
+        <p>Book a consultation and discover the best renewable energy solution for your home, business, or institution. Our experts are ready to help you save energy and reduce costs.</p>
+        <div class="cta-buttons">
+          <a href="#contact" class="btn btn-white">
+            <i data-lucide="phone" style="width:18px;height:18px"></i>
+            Get Free Consultation
+          </a>
+          <a href="#services" class="btn btn-glass">
+            <i data-lucide="arrow-down-circle" style="width:18px;height:18px"></i>
+            Explore Solutions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONTACT SECTION
+       ============================================ -->
+  <section class="section section-white" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">Get in Touch</div>
+        <h2 class="section-title reveal">Contact <span class="text-gradient">Flyby Power</span></h2>
+        <p class="section-desc reveal">Ready to start your renewable energy journey? Reach out to us for a free consultation.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <h3>Let's Build a Cleaner Future Together</h3>
+          <p>Whether you're looking for solar installation, maintenance, energy auditing, EV charger installation, or technical training — our team is here to help.</p>
+          
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <i data-lucide="map-pin" style="width:20px;height:20px"></i>
+              </div>
+              <div class="contact-detail-text">
+                <h4>Address</h4>
+                <p>Flyby Power Office, Renewable Energy Park</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <i data-lucide="phone" style="width:20px;height:20px"></i>
+              </div>
+              <div class="contact-detail-text">
+                <h4>Phone</h4>
+                <p>+91 XXXXX XXXXX</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <i data-lucide="mail" style="width:20px;height:20px"></i>
+              </div>
+              <div class="contact-detail-text">
+                <h4>Email</h4>
+                <p>info@flybypower.com</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <i data-lucide="clock" style="width:20px;height:20px"></i>
+              </div>
+              <div class="contact-detail-text">
+                <h4>Working Hours</h4>
+                <p>Mon - Sat: 9:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-socials">
+            <a href="#" class="contact-social" aria-label="Facebook">
+              <i data-lucide="facebook" style="width:18px;height:18px"></i>
+            </a>
+            <a href="#" class="contact-social" aria-label="Instagram">
+              <i data-lucide="instagram" style="width:18px;height:18px"></i>
+            </a>
+            <a href="#" class="contact-social" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width:18px;height:18px"></i>
+            </a>
+            <a href="#" class="contact-social" aria-label="Twitter">
+              <i data-lucide="twitter" style="width:18px;height:18px"></i>
+            </a>
+            <a href="#" class="contact-social" aria-label="YouTube">
+              <i data-lucide="youtube" style="width:18px;height:18px"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper reveal-right">
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Full Name</label>
+                <input type="text" id="contactName" name="name" placeholder="Your full name" required>
+              </div>
+              <div class="form-group">
+                <label for="contactPhone">Phone Number</label>
+                <input type="tel" id="contactPhone" name="phone" placeholder="Your phone number" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address</label>
+              <input type="email" id="contactEmail" name="email" placeholder="Your email address" required>
+            </div>
+            <div class="form-group">
+              <label for="contactService">Service Required</label>
+              <select id="contactService" name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="solar-installation">Solar Panel Installation</option>
+                <option value="maintenance">Operation & Maintenance</option>
+                <option value="energy-audit">Energy Auditing</option>
+                <option value="ev-charger">EV Charger Installation</option>
+                <option value="training">Technical Training</option>
+                <option value="wind-energy">Wind Energy Solutions</option>
+                <option value="consultation">General Consultation</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" placeholder="Tell us about your project or requirements..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo.png" class="footer-logo-img" alt="Flyby Power" loading="lazy" decoding="async">
+          <p>Powering a cleaner future with reliable renewable energy solutions for homes, businesses, and institutions across the region.</p>
+          <div class="contact-socials">
+            <a href="#" class="contact-social" aria-label="Facebook">
+              <i data-lucide="facebook" style="width:16px;height:16px"></i>
+            </a>
+            <a href="#" class="contact-social" aria-label="Instagram">
+              <i data-lucide="instagram" style="width:16px;height:16px"></i>
+            </a>
+            <a href="#" class="contact-social" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width:16px;height:16px"></i>
+            </a>
+            <a href="#" class="contact-social" aria-label="YouTube">
+              <i data-lucide="youtube" style="width:16px;height:16px"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#solar">Solar Installation</a></li>
+            <li><a href="#maintenance">Maintenance</a></li>
+            <li><a href="#energy-audit">Energy Auditing</a></li>
+            <li><a href="#ev-chargers">EV Chargers</a></li>
+            <li><a href="#training">Training</a></li>
+            <li><a href="#wind-energy">Wind Energy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="#solar">Residential Solar</a></li>
+            <li><a href="#solar">Commercial Solar</a></li>
+            <li><a href="#solar">Hybrid Systems</a></li>
+            <li><a href="#ev-chargers">Home EV Chargers</a></li>
+            <li><a href="#ev-chargers">Commercial Chargers</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Flyby Power. All rights reserved. Powering a cleaner future.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i data-lucide="chevron-up" style="width:20px;height:20px"></i>
+  </button>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightboxModal" aria-hidden="true" role="dialog">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close Lightbox">&times;</button>
+    <div class="lightbox-content">
+      <img src="" id="lightboxImg" alt="Enlarged gallery project view">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
+

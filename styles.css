@@ -9,40 +9,40 @@
    CSS CUSTOM PROPERTIES (Design Tokens)
    ============================================ */
 :root {
-  /* Apple/Tesla Dark Energy Theme Rules */
-  --color-white: #050505;             /* Map old white sections to deep background */
-  --color-off-white: #0A0A0C;         /* Map old off-white to surface bg */
-  --color-light-grey: #0A0A0C;        /* Map light grey to surface bg */
-  --color-grey: #121215;              /* Dark grey border/divider color */
-  --color-dark-grey: rgba(255,255,255,0.65); /* Map old body copy color to text secondary */
+  /* Restore original light theme sections and background rules */
+  --color-white: #ffffff;             /* Original white background for sections */
+  --color-off-white: #f8f9fa;         /* Original off-white background for cards/surfaces */
+  --color-light-grey: #f1f3f5;        /* Original light grey utility background */
+  --color-grey: #e2e8f0;              /* Original grey border/divider color */
+  --color-dark-grey: #475569;         /* Original body copy text color */
   
   /* Brand Green Shades - Re-mapped to #00D084 (Primary) and #00F5A0 (Accent) */
-  --color-green-50: rgba(0, 208, 132, 0.1);
-  --color-green-100: rgba(0, 208, 132, 0.2);
-  --color-green-200: rgba(0, 208, 132, 0.4);
-  --color-green-300: rgba(0, 208, 132, 0.6);
+  --color-green-50: rgba(0, 208, 132, 0.05);
+  --color-green-100: rgba(0, 208, 132, 0.1);
+  --color-green-200: rgba(0, 208, 132, 0.2);
+  --color-green-300: rgba(0, 208, 132, 0.4);
   --color-green-400: #00F5A0;        /* Accent Green */
   --color-green-500: #00D084;        /* Primary Green */
   --color-green-600: #00b06f;
   --color-green-700: #008f5a;
   
-  /* Yellow and Navy map to dark mode variables */
-  --color-yellow-50: rgba(255, 249, 196, 0.05);
-  --color-yellow-100: rgba(255, 249, 196, 0.1);
-  --color-yellow-200: rgba(255, 249, 196, 0.2);
-  --color-yellow-300: #00F5A0;        /* Map highlights to accent green */
-  --color-yellow-400: #00D084;        /* Map highlights to primary green */
-  --color-yellow-500: #00D084;
-  --color-yellow-600: #00b06f;
+  /* Yellow and Navy variables restored to their original light theme values */
+  --color-yellow-50: #fffbeb;
+  --color-yellow-100: #fef3c7;
+  --color-yellow-200: #fde68a;
+  --color-yellow-300: #fcd34d;        /* Restore sunny highlights to yellow */
+  --color-yellow-400: #fbbf24;        /* Restore sunny highlights to yellow */
+  --color-yellow-500: #f59e0b;
+  --color-yellow-600: #d97706;
   
-  --color-navy-50: #0A0A0C;
-  --color-navy-100: #121215;
-  --color-navy-200: rgba(255, 255, 255, 0.2);
-  --color-navy-300: rgba(255, 255, 255, 0.4);
-  --color-navy-400: rgba(255, 255, 255, 0.7);
-  --color-navy-500: rgba(255, 255, 255, 0.92); /* Text primary */
-  --color-navy-600: #050505;          /* Background color */
-  --color-navy-700: #020203;
+  --color-navy-50: #f0f4f8;
+  --color-navy-100: #e2e8f0;
+  --color-navy-200: #cbd5e1;
+  --color-navy-300: #94a3b8;
+  --color-navy-400: #64748b;
+  --color-navy-500: #0a1128;          /* Original text primary (deep dark navy) */
+  --color-navy-600: #0a1128;          /* Original dark section background */
+  --color-navy-700: #050915;          /* Original deep navy dark accent background */
   
   /* Accent */
   --color-accent-teal: #00F5A0;
@@ -50,21 +50,21 @@
   
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, #00D084 0%, #00F5A0 100%);
-  --gradient-hero: linear-gradient(160deg, rgba(5,5,5,0.4) 0%, rgba(10,10,12,0.6) 100%);
-  --gradient-hero-novideo: linear-gradient(160deg, #050505 0%, #0A0A0C 100%);
-  --gradient-dark: linear-gradient(180deg, #050505 0%, #0A0A0C 100%);
-  --gradient-light: linear-gradient(180deg, #0A0A0C 0%, #050505 100%);
+  --gradient-hero: linear-gradient(160deg, rgba(10,17,40,0.45) 0%, rgba(15,23,42,0.65) 100%);
+  --gradient-hero-novideo: linear-gradient(160deg, #0a1128 0%, #0f172a 100%);
+  --gradient-dark: linear-gradient(180deg, #0a1128 0%, #0f172a 100%);
+  --gradient-light: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
   --gradient-solar: linear-gradient(135deg, #00D084 0%, #00F5A0 100%);
-  --gradient-card: linear-gradient(145deg, rgba(10,10,12,0.9) 0%, rgba(5,5,5,0.95) 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.45) 100%);
   
-  /* Shadows - Minimal/sleek */
-  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.5);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.6);
-  --shadow-xl: 0 16px 64px rgba(0,0,0,0.7);
-  --shadow-glow-green: 0 0 40px rgba(0, 208, 132, 0.1);
-  --shadow-glow-yellow: 0 0 40px rgba(0, 245, 160, 0.1);
+  /* Shadows - restored to clean light theme shadow levels */
+  --shadow-sm: 0 2px 8px rgba(10,17,40,0.06);
+  --shadow-md: 0 4px 20px rgba(10,17,40,0.08);
+  --shadow-lg: 0 8px 40px rgba(10,17,40,0.1);
+  --shadow-xl: 0 16px 64px rgba(10,17,40,0.12);
+  --shadow-glow-green: 0 0 40px rgba(0, 208, 132, 0.15);
+  --shadow-glow-yellow: 0 0 40px rgba(251, 191, 36, 0.15);
   
   /* Typography */
   --font-heading: 'Outfit', 'SF Pro Display', -apple-system, sans-serif;

@@ -753,7 +753,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function tick() {
       if (isReady) {
         // Only calculate and render if the user is actually near the hero section
-        if (window.scrollY < window.innerHeight * 5) {
+        const heroHeight = heroScrollWrapper ? heroScrollWrapper.offsetHeight : window.innerHeight * 12;
+        if (window.scrollY < heroHeight + window.innerHeight) {
           // Cubic/kinetic linear interpolation (lerp) - 0.04 creates exactly a ~0.5s delay
           smoothProgress += (targetProgress - smoothProgress) * 0.04;
           

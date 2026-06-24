@@ -532,19 +532,45 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   firstFrame.onerror = () => { loadChunks(); };
 
+  // Helper to generate progressive preloading indices
+  function getProgressiveIndices() {
+    const indices = [];
+    const visited = new Set();
+    visited.add(1);
+
+    function addStep(step, start) {
+      for (let i = start; i <= frameCount; i += step) {
+        if (!visited.has(i)) {
+          indices.push(i);
+          visited.add(i);
+        }
+      }
+    }
+
+    addStep(20, 20); // Batch 1: Every 20th frame (coarse timeline anchors)
+    addStep(20, 10); // Batch 2: Every 10th frame (medium anchors)
+    addStep(10, 5);  // Batch 3: Every 5th frame
+    addStep(2, 2);   // Batch 4: Every 2nd frame (even frames)
+    addStep(1, 3);   // Batch 5: The remaining odd frames
+    
+    return indices;
+  }
+
   // Load remaining frames in batches of 30 to prevent network/browser freeze
   function loadChunks() {
-    let current = 2;
+    const queue = getProgressiveIndices();
+    let queueIndex = 0;
+
     function loadBatch() {
-      if (current > frameCount) return;
+      if (queueIndex >= queue.length) return;
       let batchPromises = [];
-      for (let i = 0; i < 30 && current <= frameCount; i++, current++) {
+      for (let i = 0; i < 30 && queueIndex < queue.length; i++) {
+        const frameIdx = queue[queueIndex];
+        queueIndex++;
         batchPromises.push(new Promise((resolve) => {
           const img = new Image();
-          // Use the captured index for the array assignment
-          const frameIdx = current; 
-          img.src = `images/hero-frames/frame-${frameIdx.toString().padStart(4, '0')}.webp`;
           frames[frameIdx] = img;
+          img.src = `images/hero-frames/frame-${frameIdx.toString().padStart(4, '0')}.webp`;
           img.onload = () => {
              if (isReady) renderFrame();
              resolve();
@@ -587,13 +613,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let imgToDraw = frames[frameIndex];
 
-    // If the exact frame isn't completely loaded yet, fallback to the most recent completely loaded frame
+    // If the exact frame isn't completely loaded yet, fallback to the nearest completely loaded frame (bidirectional search)
     if (!imgToDraw || !imgToDraw.complete || imgToDraw.naturalWidth === 0) {
-      for (let i = frameIndex; i >= 1; i--) {
-        if (frames[i] && frames[i].complete && frames[i].naturalWidth > 0) {
-          imgToDraw = frames[i];
+      let dist = 1;
+      while (dist < frameCount) {
+        const prevIdx = frameIndex - dist;
+        if (prevIdx >= 1 && frames[prevIdx] && frames[prevIdx].complete && frames[prevIdx].naturalWidth > 0) {
+          imgToDraw = frames[prevIdx];
           break;
         }
+        const nextIdx = frameIndex + dist;
+        if (nextIdx <= frameCount && frames[nextIdx] && frames[nextIdx].complete && frames[nextIdx].naturalWidth > 0) {
+          imgToDraw = frames[nextIdx];
+          break;
+        }
+        dist++;
       }
     }
 

@@ -53,17 +53,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Sticky navbar on scroll
   let lastScrollY = 0;
-  window.addEventListener('scroll', () => {
+  const handleScroll = () => {
     const scrollY = window.scrollY;
+    const heroScrollWrapper = document.getElementById('heroScrollWrapper');
     
-    if (scrollY > 80) {
+    let threshold = 80;
+    if (heroScrollWrapper) {
+      threshold = heroScrollWrapper.offsetHeight - window.innerHeight - 80;
+      if (threshold < 80) threshold = 80;
+    }
+    
+    if (scrollY > threshold) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
     
     lastScrollY = scrollY;
-  });
+  };
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
 
   // Mobile menu toggle
   navHamburger.addEventListener('click', () => {

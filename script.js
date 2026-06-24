@@ -56,17 +56,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const handleScroll = () => {
     const scrollY = window.scrollY;
     const heroScrollWrapper = document.getElementById('heroScrollWrapper');
+    const carouselSection = document.querySelector('.carousel-section');
     
-    let threshold = 80;
+    let isInsideTransparentSection = false;
+    
+    // Check if inside hero section
+    let heroThreshold = 80;
     if (heroScrollWrapper) {
-      threshold = heroScrollWrapper.offsetHeight - window.innerHeight - 80;
-      if (threshold < 80) threshold = 80;
+      heroThreshold = heroScrollWrapper.offsetHeight - window.innerHeight - 80;
+      if (heroThreshold < 80) heroThreshold = 80;
+    }
+    if (scrollY <= heroThreshold) {
+      isInsideTransparentSection = true;
     }
     
-    if (scrollY > threshold) {
-      navbar.classList.add('scrolled');
-    } else {
+    // Check if inside "Our Solutions" carousel section
+    if (carouselSection) {
+      const rect = carouselSection.getBoundingClientRect();
+      if (rect.top <= 80 && rect.bottom >= 80) {
+        isInsideTransparentSection = true;
+      }
+    }
+    
+    if (isInsideTransparentSection) {
       navbar.classList.remove('scrolled');
+    } else {
+      navbar.classList.add('scrolled');
     }
     
     lastScrollY = scrollY;

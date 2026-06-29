@@ -1207,7 +1207,7 @@ updateCarousel();
   const brandsSection = document.getElementById('brands');
   if (!brandsSection) return;
 
-  var state = { system: 'all', product: 'all' };
+  var state = { product: 'all' };
 
   // Spotlight follow using RequestAnimationFrame for performance
   document.querySelectorAll('.brands-card').forEach(function(card) {
@@ -1247,18 +1247,10 @@ updateCarousel();
 
       // Update active pill styles per row
       document.querySelectorAll('#brands [data-filter="'+f+'"]').forEach(function(p) {
-        p.classList.remove('active-neutral','active-amber','active-green');
+        p.classList.remove('active-neutral');
       });
 
-      if (v === 'all') {
-        pill.classList.add('active-neutral');
-      } else if (f === 'system' && v === 'ongrid') {
-        pill.classList.add('active-amber');
-      } else if (f === 'system' && v === 'hybrid') {
-        pill.classList.add('active-green');
-      } else {
-        pill.classList.add('active-neutral');
-      }
+      pill.classList.add('active-neutral');
 
       applyFilters();
       // ScrollTrigger refresh in case layout height changes
@@ -1269,20 +1261,14 @@ updateCarousel();
   });
 
   function applyFilters() {
-    var cards = document.querySelectorAll('#brands .brands-card[data-system]');
+    var cards = document.querySelectorAll('#brands .brands-card[data-product]');
     var visible = 0;
 
     cards.forEach(function(card) {
-      var sys = card.dataset.system;
       var prod = card.dataset.product;
-
-      var sysMatch = state.system === 'all'
-        || sys === state.system
-        || sys === 'both';
-
       var prodMatch = state.product === 'all' || prod === state.product;
 
-      if (sysMatch && prodMatch) {
+      if (prodMatch) {
         card.classList.remove('hidden');
         visible++;
       } else {

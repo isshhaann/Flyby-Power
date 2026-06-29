@@ -3200,7 +3200,8 @@ h1, h2, h3, h4, h5, h6 {
   filter: grayscale(0%);
   opacity: 1;
 }
-.bs-mark svg { width: 18px; height: 18px; flex-shrink: 0; }
+.bs-mark svg,
+.bs-mark img { width: 18px; height: 18px; flex-shrink: 0; object-fit: contain; }
 .bs-mark span {
   font-family: var(--font-heading);
   font-weight: 500;
@@ -3522,33 +3523,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ── LEGEND ── */
-.legend {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-}
 
-.leg {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  color: var(--color-gray-400);
-}
-
-.leg-bar {
-  width: 24px;
-  height: 3px;
-  border-radius: 99px;
-  flex-shrink: 0;
-}
-
-.leg-bar.ongrid { background: var(--color-yellow-400); }
-.leg-bar.hybrid { background: var(--color-green-400); }
-.leg-bar.both { background: linear-gradient(90deg, var(--color-yellow-400), var(--color-green-400)); }
 
 /* ── FILTERS ── */
 .filters-wrap {
@@ -3667,18 +3642,7 @@ h1, h2, h3, h4, h5, h6 {
   border-color: transparent;
 }
 
-.stripe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 2;
-}
 
-.stripe.ongrid { background: var(--color-yellow-400); }
-.stripe.hybrid { background: var(--color-green-400); }
-.stripe.both { background: linear-gradient(90deg, var(--color-yellow-400), var(--color-green-400)); }
 
 .brands-card .spot {
   position: absolute;

@@ -2815,23 +2815,37 @@ h1, h2, h3, h4, h5, h6 {
   50% { transform: translateX(8px); opacity: 1; }
 }
 
-/* Solar Savings Calculator */
-.calculator-section {
-  margin-top: 80px;
+/* Fullscreen Split Savings Calculator */
+.calculator-section-fullscreen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100vw;
+  max-width: 100%;
   background: var(--color-navy-600);
-  border-radius: var(--radius-xl);
-  padding: 56px 48px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: var(--shadow-xl);
   color: var(--color-white);
   position: relative;
   overflow: hidden;
 }
 
+.calc-inputs-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 60px;
+  background: var(--color-navy-600);
+}
+
+.calc-inputs-content {
+  width: 100%;
+  max-width: 580px;
+}
+
 .calculator-header {
-  text-align: center;
+  text-align: left;
   max-width: 640px;
-  margin: 0 auto 40px;
+  margin-bottom: 40px;
 }
 
 .calculator-title {
@@ -2848,29 +2862,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
-}
-
-.calculator-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 36px;
-  align-items: stretch;
-}
-
-.calc-panel {
-  border-radius: var(--radius-lg);
-  position: relative;
-  z-index: 2;
-}
-
-.calc-inputs-panel {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 36px;
 }
 
 .calc-input-group {
@@ -2947,26 +2938,35 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(255, 255, 255, 0.45);
 }
 
-.calc-results-panel {
-  background: #060b1a;
-  border-radius: var(--radius-lg);
-  padding: 40px;
+.calc-results-container {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  border: 2px solid transparent;
+  padding: 80px 60px;
+  background: linear-gradient(135deg, #040917 0%, #06112c 100%);
   position: relative;
-  box-shadow: 0 10px 40px rgba(0, 230, 118, 0.15);
+  box-shadow: inset 10px 0 30px rgba(0, 0, 0, 0.2);
 }
 
-.calc-results-panel::after {
+.calc-results-container::before {
   content: '';
   position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, #00bfa5 0%, #00e676 100%);
-  border-radius: calc(var(--radius-lg) + 2px);
-  z-index: -1;
-  opacity: 0.8;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0, 230, 118, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.calc-results-container .results-content {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
 }
 
 .results-content {
@@ -3007,42 +3007,66 @@ h1, h2, h3, h4, h5, h6 {
   margin: 20px 0;
 }
 
-.results-footer {
-  display: flex;
+.results-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
-  justify-content: space-around;
-  gap: 24px;
+  gap: 32px;
+  margin-top: 24px;
 }
 
-.results-footer-item {
+.results-metric-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  padding: 24px;
   gap: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.footer-label {
-  font-size: 0.75rem;
+.results-metric-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 230, 118, 0.3);
+}
+
+.metric-label {
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
 }
 
-.footer-value {
+.metric-value {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--color-white);
 }
 
+.results-cta-wrapper {
+  width: 100%;
+  z-index: 2;
+}
+
 @media (max-width: 992px) {
-  .calculator-section {
-    padding: 40px 24px;
-  }
-  .calculator-grid {
+  .calculator-section-fullscreen {
     grid-template-columns: 1fr;
-    gap: 32px;
+    min-height: auto;
+  }
+  .calc-inputs-container,
+  .calc-results-container {
+    padding: 60px 24px;
+  }
+  .calc-results-container {
+    box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  .calculator-header {
+    text-align: center;
   }
 }
 

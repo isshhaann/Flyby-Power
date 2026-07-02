@@ -366,74 +366,83 @@
         </div>
       </div>
 
-      <!-- Flyby Savings Calculator -->
-      <div class="reveal calculator-section">
+    </div>
+  </section>
+
+  <!-- ============================================
+       FLYBY SAVINGS CALCULATOR SECTION
+       ============================================ -->
+  <section class="calculator-section-fullscreen" id="calculator">
+    <div class="calc-inputs-container">
+      <div class="calc-inputs-content reveal-left">
         <div class="calculator-header">
+          <div class="section-label" style="text-align: left; margin: 0 0 12px 0;">Savings Calculator</div>
           <h2 class="calculator-title">Flyby Savings Calculator</h2>
           <p class="calculator-subtitle">Calculate your financial trajectory. Adjust the sliders to match your home energy requirements and estimate your 25-year returns.</p>
         </div>
         
-        <div class="calculator-grid">
-          <!-- Left panel: Inputs/Sliders -->
-          <div class="calc-panel calc-inputs-panel">
-            <div class="calc-input-group">
-              <div class="calc-label-row">
-                <span class="calc-input-label">Current Monthly Energy Bill</span>
-                <span class="calc-value-display" id="billVal">$270</span>
-              </div>
-              <input type="range" id="billRange" min="50" max="600" value="270" class="calc-slider">
-              <div class="calc-range-labels">
-                <span>$50</span>
-                <span>$600</span>
-              </div>
-            </div>
-
-            <div class="calc-input-group">
-              <div class="calc-label-row">
-                <span class="calc-input-label">Daily Sun Hours (Region Average)</span>
-                <span class="calc-value-display" id="sunVal">4 hrs</span>
-              </div>
-              <input type="range" id="sunRange" min="2" max="8" value="4" class="calc-slider">
-              <div class="calc-range-labels">
-                <span>2 hrs (Low)</span>
-                <span>8 hrs (High)</span>
-              </div>
-            </div>
-
-            <div class="calc-input-group">
-              <div class="calc-label-row">
-                <span class="calc-input-label">Estimated System Size</span>
-                <span class="calc-value-display" id="sizeVal">15 kW</span>
-              </div>
-              <input type="range" id="sizeRange" min="3" max="25" value="15" class="calc-slider">
-              <div class="calc-range-labels">
-                <span>3 kW</span>
-                <span>25 kW</span>
-              </div>
-            </div>
+        <div class="calc-input-group">
+          <div class="calc-label-row">
+            <span class="calc-input-label">Current Monthly Energy Bill</span>
+            <span class="calc-value-display" id="billVal">$270</span>
           </div>
-
-          <!-- Right panel: Results Card -->
-          <div class="calc-panel calc-results-panel">
-            <div class="results-content">
-              <span class="results-label">Estimated Annual Savings</span>
-              <h3 class="results-value" id="annualSavingsVal">$2,733</h3>
-              <p class="results-subtext">Based on your local system capacity and sun exposure.</p>
-              
-              <div class="results-divider"></div>
-              
-              <div class="results-footer">
-                <div class="results-footer-item">
-                  <span class="footer-label">Payback Period</span>
-                  <span class="footer-value" id="paybackVal">10.8 Years</span>
-                </div>
-                <div class="results-footer-item">
-                  <span class="footer-label">Project IRR</span>
-                  <span class="footer-value" id="irrVal">7.8%</span>
-                </div>
-              </div>
-            </div>
+          <input type="range" id="billRange" min="50" max="600" value="270" class="calc-slider">
+          <div class="calc-range-labels">
+            <span>$50</span>
+            <span>$600</span>
           </div>
+        </div>
+
+        <div class="calc-input-group">
+          <div class="calc-label-row">
+            <span class="calc-input-label">Daily Sun Hours (Region Average)</span>
+            <span class="calc-value-display" id="sunVal">4 hrs</span>
+          </div>
+          <input type="range" id="sunRange" min="2" max="8" value="4" class="calc-slider">
+          <div class="calc-range-labels">
+            <span>2 hrs (Low)</span>
+            <span>8 hrs (High)</span>
+          </div>
+        </div>
+
+        <div class="calc-input-group">
+          <div class="calc-label-row">
+            <span class="calc-input-label">Estimated System Size</span>
+            <span class="calc-value-display" id="sizeVal">15 kW</span>
+          </div>
+          <input type="range" id="sizeRange" min="3" max="25" value="15" class="calc-slider">
+          <div class="calc-range-labels">
+            <span>3 kW</span>
+            <span>25 kW</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-results-container reveal-right">
+      <div class="results-content">
+        <span class="results-label">Estimated Annual Savings</span>
+        <h3 class="results-value" id="annualSavingsVal">$2,733</h3>
+        <p class="results-subtext">Based on your local system capacity and sun exposure.</p>
+        
+        <div class="results-divider"></div>
+        
+        <div class="results-metrics-grid">
+          <div class="results-metric-item">
+            <span class="metric-label">Payback Period</span>
+            <span class="metric-value" id="paybackVal">10.8 Years</span>
+          </div>
+          <div class="results-metric-item">
+            <span class="metric-label">Project IRR (25 Years)</span>
+            <span class="metric-value" id="irrVal">7.8%</span>
+          </div>
+        </div>
+
+        <div class="results-cta-wrapper">
+          <a href="#contact" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 40px;">
+            <i data-lucide="calculator" style="width:18px;height:18px"></i>
+            Claim Your Solar Savings
+          </a>
         </div>
       </div>
     </div>

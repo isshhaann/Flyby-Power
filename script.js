@@ -967,11 +967,10 @@ function updateCarousel(){
 
     });
 
-    document.getElementById('cDetailTitle').textContent =
-    products[active].title;
-
-    document.getElementById('cDetailText').textContent =
-    products[active].text;
+    const titleEl = document.getElementById('cDetailTitle');
+    const textEl = document.getElementById('cDetailText');
+    if (titleEl) titleEl.textContent = products[active].title;
+    if (textEl) textEl.textContent = products[active].text;
 }
 
 document.getElementById('cNext').onclick = () => {

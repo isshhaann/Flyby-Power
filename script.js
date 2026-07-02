@@ -540,12 +540,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (heroImage && heroCanvas) heroImage.style.display = 'none';
 
+  const isMobile = window.innerWidth < 768;
+  const frameDir = isMobile ? 'images/hero-frames-mobile' : 'images/hero-frames';
+  const imgW = isMobile ? 720 : 1280;
+  const imgH = isMobile ? 1280 : 720;
+
   const frameCount = 600;
   const frames = new Array(frameCount + 1).fill(null);
 
   // Preload frame 1 immediately to unlock the UI
   const firstFrame = new Image();
-  firstFrame.src = 'images/hero-frames/frame-0001.webp';
+  firstFrame.src = `${frameDir}/frame-0001.webp`;
   frames[1] = firstFrame;
   firstFrame.onload = () => {
     isReady = true;
@@ -594,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
         batchPromises.push(new Promise((resolve) => {
           const img = new Image();
           frames[frameIdx] = img;
-          img.src = `images/hero-frames/frame-${frameIdx.toString().padStart(4, '0')}.webp`;
+          img.src = `${frameDir}/frame-${frameIdx.toString().padStart(4, '0')}.webp`;
           img.onload = () => {
              if (isReady) renderFrame();
              resolve();
@@ -660,8 +665,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const canvasW = heroCanvas.width;
     const canvasH = heroCanvas.height;
-    const imgW = 1280;
-    const imgH = 720;
     const canvasRatio = canvasW / canvasH;
     const imgRatio = imgW / imgH;
 

@@ -614,11 +614,26 @@ document.addEventListener('DOMContentLoaded', () => {
     loadBatch();
   }
 
+  let lastWidth = window.innerWidth;
+  let lastHeight = window.innerHeight;
+
   function resizeCanvas() {
     if (!heroCanvas) return;
-    heroCanvas.width = window.innerWidth;
-    heroCanvas.height = window.innerHeight;
-    renderFrame();
+    const currentWidth = window.innerWidth;
+    const currentHeight = window.innerHeight;
+
+    // Ignore small height changes on mobile (e.g. address bar collapsing/expanding)
+    // to prevent the video canvas from scaling/zooming while scrolling.
+    const widthChanged = currentWidth !== lastWidth;
+    const heightChangedSignificant = Math.abs(currentHeight - lastHeight) > 120;
+
+    if (widthChanged || heightChangedSignificant) {
+      heroCanvas.width = currentWidth;
+      heroCanvas.height = currentHeight;
+      lastWidth = currentWidth;
+      lastHeight = currentHeight;
+      renderFrame();
+    }
   }
   
   window.addEventListener('resize', resizeCanvas, { passive: true });
@@ -763,7 +778,9 @@ document.addEventListener('DOMContentLoaded', () => {
       start: 'top top',
       end: 'bottom bottom',
       onUpdate: (self) => {
-        targetProgress = self.progress;
+        // Map scroll progress to reach 100% animation progress at 92% of the scroll
+        // to provide a buffer that prevents the page from unpinning before the animation catches up.
+        targetProgress = Math.min(1.0, self.progress / 0.92);
       }
     });
 

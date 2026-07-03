@@ -227,15 +227,17 @@ h6 {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 20px 0;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  background: var(--color-navy-600);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background-color 0.3s ease, border-color 0.3s ease, height 0.3s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 12px 0;
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
@@ -243,6 +245,7 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 
 .nav-logo {
@@ -261,14 +264,14 @@ h6 {
 }
 
 .nav-logo-img {
-  height: 120px;
+  height: 48px;
   width: auto;
   display: block;
   transition: height var(--transition-normal);
 }
 
 .navbar.scrolled .nav-logo-img {
-  height: 90px;
+  height: 48px;
 }
 
 @keyframes shimmer {
@@ -388,20 +391,34 @@ h6 {
 .hero-scroll-wrapper {
   position: relative;
   height: 1200vh;
+  margin-top: 80px;
 }
 
-
+@media (max-width: 768px) {
+  .hero-scroll-wrapper {
+    margin-top: 64px;
+  }
+}
 
 .hero {
   position: sticky;
-  top: 0;
-  height: 100vh;
+  top: 80px;
+  height: calc(100vh - 80px);
+  height: calc(100lvh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: var(--color-navy-600);
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    top: 64px;
+    height: calc(100vh - 64px);
+    height: calc(100lvh - 64px);
+  }
 }
 
 .hero-bg {
@@ -2654,6 +2671,15 @@ h6 {
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    height: 64px;
+  }
+
+  .nav-logo-img,
+  .navbar.scrolled .nav-logo-img {
+    height: 36px;
+  }
+
   :root {
     --section-padding: 80px 0;
   }

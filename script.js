@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollY = window.scrollY;
     const heroScrollWrapper = document.getElementById('heroScrollWrapper');
     const carouselSection = document.querySelector('.carousel-section');
-    
+
     let isInsideTransparentSection = false;
-    
+
     // Check if inside hero section
     let heroThreshold = 80;
     if (heroScrollWrapper) {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (scrollY <= heroThreshold) {
       isInsideTransparentSection = true;
     }
-    
+
     // Check if inside "Our Solutions" carousel section
     if (carouselSection) {
       const rect = carouselSection.getBoundingClientRect();
@@ -77,13 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
         isInsideTransparentSection = true;
       }
     }
-    
+
     if (isInsideTransparentSection) {
       navbar.classList.remove('scrolled');
     } else {
       navbar.classList.add('scrolled');
     }
-    
+
     lastScrollY = scrollY;
   };
   window.addEventListener('scroll', handleScroll);
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Active nav link on scroll
   const sections = document.querySelectorAll('section[id]');
   let sectionData = [];
-  
+
   function cacheSectionData() {
     sectionData = Array.from(sections).map(section => ({
       id: section.getAttribute('id'),
@@ -125,14 +125,14 @@ document.addEventListener('DOMContentLoaded', () => {
       height: section.offsetHeight
     }));
   }
-  
+
   window.addEventListener('resize', cacheSectionData, { passive: true });
   setTimeout(cacheSectionData, 500);
 
   let tickingNav = false;
   function updateActiveNav() {
     const scrollY = window.scrollY + 200;
-    
+
     sectionData.forEach(data => {
       if (scrollY >= data.top && scrollY < data.top + data.height) {
         allNavLinks.forEach(link => {
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // SCROLL REVEAL ANIMATIONS
   // ============================================
   const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-  
+
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -199,22 +199,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const duration = 2000;
     const startTime = performance.now();
     const startValue = 0;
-    
+
     function update(currentTime) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       // Ease out cubic
       const easeOut = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(startValue + (target - startValue) * easeOut);
-      
+
       element.textContent = current.toLocaleString() + (target >= 90 && target <= 100 ? '%' : '+');
-      
+
       if (progress < 1) {
         requestAnimationFrame(update);
       }
     }
-    
+
     requestAnimationFrame(update);
   }
 
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // AUDIT BARS ANIMATION
   // ============================================
   const auditBars = document.querySelectorAll('.audit-bar-fill');
-  
+
   const auditObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -272,16 +272,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const annualUsage = (B * 12) / 0.15; // kWh/year
     const annualGen = Psize * Sh * 365; // kWh/year
     const coverage = Math.min(1.0, annualGen / annualUsage);
-    
+
     // Annual Savings
     const annualSavings = B * 12 * coverage * 0.843;
-    
+
     // System cost
     const systemCost = Psize * 1970;
-    
+
     // Payback period
     const payback = annualSavings > 0 ? (systemCost / annualSavings) : 0;
-    
+
     // Calculate Project IRR over 25 years (numerical binary search)
     let irr = 0;
     if (systemCost > 0 && annualSavings > 0) {
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateSliderValue(val) {
     if (compareSlider) compareSlider.value = val;
     if (panelCompare) panelCompare.style.setProperty('--exposure', `${val}%`);
-    
+
     // Update efficiency value dynamically based on slider value
     const minEff = 65;
     const maxEff = 98;
@@ -378,29 +378,29 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !sliderAnimated) {
           sliderAnimated = true;
-          
+
           // Animate slider from 50 (middle) to 100 (fully clean)
           const duration = 2000;
           const startTime = performance.now();
           const startVal = 50;
           const endVal = 100;
-          
+
           function tick(currentTime) {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
             // Ease out cubic
             const easeOut = 1 - Math.pow(1 - progress, 3);
             const currentVal = startVal + (endVal - startVal) * easeOut;
-            
+
             updateSliderValue(currentVal);
-            
+
             if (progress < 1) {
               animFrameId = requestAnimationFrame(tick);
             } else {
               animFrameId = null;
             }
           }
-          
+
           animFrameId = requestAnimationFrame(tick);
         }
       });
@@ -415,16 +415,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // FAQ ACCORDION
   // ============================================
   const faqItems = document.querySelectorAll('.faq-item');
-  
+
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
-    
+
     question.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
-      
+
       // Close all items
       faqItems.forEach(i => i.classList.remove('active'));
-      
+
       // Toggle clicked item
       if (!isActive) {
         item.classList.add('active');
@@ -436,24 +436,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // CONTACT FORM
   // ============================================
   const contactForm = document.getElementById('contactForm');
-  
+
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       const submitBtn = contactForm.querySelector('.form-submit');
       const originalText = submitBtn.textContent;
-      
+
       // Simulate form submission
       submitBtn.textContent = 'Sending...';
       submitBtn.style.opacity = '0.7';
       submitBtn.disabled = true;
-      
+
       setTimeout(() => {
         submitBtn.textContent = '✓ Message Sent!';
         submitBtn.style.background = '#2e7d32';
         submitBtn.style.opacity = '1';
-        
+
         // Reset form
         setTimeout(() => {
           contactForm.reset();
@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // BACK TO TOP BUTTON
   // ============================================
   const backToTop = document.getElementById('backToTop');
-  
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 600) {
       backToTop.classList.add('visible');
@@ -581,7 +581,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addStep(10, 5);  // Batch 3: Every 5th frame
     addStep(2, 2);   // Batch 4: Every 2nd frame (even frames)
     addStep(1, 3);   // Batch 5: The remaining odd frames
-    
+
     return indices;
   }
 
@@ -601,8 +601,8 @@ document.addEventListener('DOMContentLoaded', () => {
           frames[frameIdx] = img;
           img.src = `${frameDir}/frame-${frameIdx.toString().padStart(4, '0')}.webp`;
           img.onload = () => {
-             if (isReady) renderFrame();
-             resolve();
+            if (isReady) renderFrame();
+            resolve();
           };
           img.onerror = resolve;
         }));
@@ -620,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
     heroCanvas.height = window.innerHeight;
     renderFrame();
   }
-  
+
   window.addEventListener('resize', resizeCanvas, { passive: true });
 
   // Safety fallback
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderFrame() {
     if (!heroCtx || !isReady) return;
-    
+
     // Map progress (0 to 1) to frame index (1 to 600)
     let frameIndex = Math.floor(smoothProgress * (frameCount - 1)) + 1;
     frameIndex = Math.max(1, Math.min(frameCount, frameIndex));
@@ -775,7 +775,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.scrollY < heroHeight + window.innerHeight) {
           const lerpFactor = isMobile ? 0.15 : 0.04;
           smoothProgress += (targetProgress - smoothProgress) * lerpFactor;
-          
+
           // Snap when close enough to avoid endless microscopic decimal calculations
           if (Math.abs(targetProgress - smoothProgress) < 0.001) {
             smoothProgress = targetProgress;
@@ -814,7 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // SERVICE CARD TILT EFFECT
   // ============================================
   const serviceCards = document.querySelectorAll('.service-card');
-  
+
   serviceCards.forEach(card => {
     let rect, centerX, centerY;
     let ticking = false;
@@ -838,7 +838,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ticking = true;
       }
     });
-    
+
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
       rect = null;
@@ -849,7 +849,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ENERGY FLOW ANIMATION ON SCROLL
   // ============================================
   const energyNodes = document.querySelectorAll('.energy-node-icon');
-  
+
   const energyObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -899,107 +899,107 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================
   // PRODUCT CAROUSEL — clean rewrite
   // ============================================
-(function(){
-const cards = document.querySelectorAll('.carousel-card');
+  (function () {
+    const cards = document.querySelectorAll('.carousel-card');
 
-const products = [
-{
-title:"Product 1",
-text:"Description for Product 1."
-},
-{
-title:"Product 2",
-text:"Description for Product 2."
-},
-{
-title:"Product 3",
-text:"Description for Product 3."
-},
-{
-title:"Product 4",
-text:"Description for Product 4."
-}
-];
+    const products = [
+      {
+        title: "Product 1",
+        text: "Description for Product 1."
+      },
+      {
+        title: "Product 2",
+        text: "Description for Product 2."
+      },
+      {
+        title: "Product 3",
+        text: "Description for Product 3."
+      },
+      {
+        title: "Product 4",
+        text: "Description for Product 4."
+      }
+    ];
 
-let active = 0;
+    let active = 0;
 
-function updateCarousel(){
+    function updateCarousel() {
 
-    cards.forEach((card,index)=>{
+      cards.forEach((card, index) => {
 
         let offset = index - active;
 
-        if(offset < -2) offset += cards.length;
-        if(offset > 2) offset -= cards.length;
+        if (offset < -2) offset += cards.length;
+        if (offset > 2) offset -= cards.length;
 
         let transform = '';
         let opacity = 0;
 
-        switch(offset){
+        switch (offset) {
 
-            case 0:
-                transform =
-                'translate(-50%,-50%) translateZ(150px) scale(1)';
-                opacity = 1;
+          case 0:
+            transform =
+              'translate(-50%,-50%) translateZ(150px) scale(1)';
+            opacity = 1;
             break;
 
-            case -1:
-                transform =
-                'translate(-50%,-50%) translateX(-320px) rotateY(35deg) scale(.85)';
-                opacity = .6;
+          case -1:
+            transform =
+              'translate(-50%,-50%) translateX(-320px) rotateY(35deg) scale(.85)';
+            opacity = .6;
             break;
 
-            case 1:
-                transform =
-                'translate(-50%,-50%) translateX(320px) rotateY(-35deg) scale(.85)';
-                opacity = .6;
+          case 1:
+            transform =
+              'translate(-50%,-50%) translateX(320px) rotateY(-35deg) scale(.85)';
+            opacity = .6;
             break;
 
-            default:
-                transform =
-                'translate(-50%,-50%) translateZ(-300px) scale(.7)';
-                opacity = 0;
+          default:
+            transform =
+              'translate(-50%,-50%) translateZ(-300px) scale(.7)';
+            opacity = 0;
         }
 
         card.style.transform = transform;
         card.style.opacity = opacity;
         card.style.zIndex = 100 - Math.abs(offset);
 
-    });
+      });
 
-    const titleEl = document.getElementById('cDetailTitle');
-    const textEl = document.getElementById('cDetailText');
-    if (titleEl) titleEl.textContent = products[active].title;
-    if (textEl) textEl.textContent = products[active].text;
-}
+      const titleEl = document.getElementById('cDetailTitle');
+      const textEl = document.getElementById('cDetailText');
+      if (titleEl) titleEl.textContent = products[active].title;
+      if (textEl) textEl.textContent = products[active].text;
+    }
 
-document.getElementById('cNext').onclick = () => {
-    active = (active + 1) % cards.length;
+    document.getElementById('cNext').onclick = () => {
+      active = (active + 1) % cards.length;
+      updateCarousel();
+    };
+
+    document.getElementById('cPrev').onclick = () => {
+      active = (active - 1 + cards.length) % cards.length;
+      updateCarousel();
+    };
+
     updateCarousel();
-};
-
-document.getElementById('cPrev').onclick = () => {
-    active = (active - 1 + cards.length) % cards.length;
-    updateCarousel();
-};
-
-updateCarousel();
-})();
+  })();
 
 });
 // ============================================
 // PARTNERS SECTION HOVER EFFECTS
 // ============================================
-(function(){
+(function () {
   document.querySelectorAll('.bs-card').forEach(function (card) {
     var spot = card.querySelector('.bs-spot');
     var color = card.dataset.color || '#888888';
     spot.style.background = 'radial-gradient(120px circle at 50% 50%, ' + color + '33, transparent 70%)';
-    
+
     let r;
     let ticking = false;
 
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
       r = card.getBoundingClientRect();
     });
 
@@ -1015,7 +1015,7 @@ updateCarousel();
       }
     });
 
-    card.addEventListener('mouseleave', function() {
+    card.addEventListener('mouseleave', function () {
       r = null;
       spot.style.background = 'radial-gradient(120px circle at 50% 50%, ' + color + '33, transparent 70%)';
     });
@@ -1024,7 +1024,7 @@ updateCarousel();
 // ============================================
 // INSTAGRAM REELS MARQUEE SECTION
 // ============================================
-(function() {
+(function () {
   // Configurable array for future Instagram Reels integration.
   // Replace the image URLs with actual video embeds/URLs later.
   const reelsData = [
@@ -1097,7 +1097,7 @@ updateCarousel();
   // Generate cards
   let cardsHTML1 = '';
   let cardsHTML2 = '';
-  
+
   // Track 1 gets original order
   reelsData.forEach(reel => { cardsHTML1 += createCardHTML(reel); });
   // Track 2 gets reversed order for variety
@@ -1141,7 +1141,7 @@ updateCarousel();
         let boost = Math.abs(delta) * 0.05;
         if (boost > 5) boost = 5;
         targetVelocity = baseSpeed + boost;
-        
+
         lastScrollY = currentScrollY;
         tickingScroll = false;
       });
@@ -1170,7 +1170,7 @@ updateCarousel();
     if (isVisible) {
       // Lerp velocity back to base speed very softly
       targetVelocity += (baseSpeed - targetVelocity) * 0.03;
-      
+
       // If hovering, smooth down to 0
       let currentSpeed = isHovering ? 0 : targetVelocity;
       scrollVelocity += (currentSpeed - scrollVelocity) * 0.08;
@@ -1205,50 +1205,50 @@ updateCarousel();
 // ============================================
 // BRANDS SECTION LOGIC
 // ============================================
-(function() {
+(function () {
   const brandsSection = document.getElementById('brands');
   if (!brandsSection) return;
 
   var state = { product: 'all' };
 
   // Spotlight follow using RequestAnimationFrame for performance
-  document.querySelectorAll('.brands-card').forEach(function(card) {
+  document.querySelectorAll('.brands-card').forEach(function (card) {
     var spot = card.querySelector('.spot');
     var color = card.dataset.color || '#888';
     let r;
     let ticking = false;
 
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
       r = card.getBoundingClientRect();
     });
 
-    card.addEventListener('mousemove', function(e) {
+    card.addEventListener('mousemove', function (e) {
       if (!ticking && r) {
         window.requestAnimationFrame(() => {
           var x = ((e.clientX - r.left) / r.width) * 100;
           var y = ((e.clientY - r.top) / r.height) * 100;
-          spot.style.background = 'radial-gradient(150px circle at '+x+'% '+y+'%, '+color+'26, transparent 70%)';
+          spot.style.background = 'radial-gradient(150px circle at ' + x + '% ' + y + '%, ' + color + '26, transparent 70%)';
           ticking = false;
         });
         ticking = true;
       }
     });
 
-    card.addEventListener('mouseleave', function() {
+    card.addEventListener('mouseleave', function () {
       r = null;
       spot.style.background = '';
     });
   });
 
   // Filter pills
-  document.querySelectorAll('#brands .pill').forEach(function(pill) {
-    pill.addEventListener('click', function() {
+  document.querySelectorAll('#brands .pill').forEach(function (pill) {
+    pill.addEventListener('click', function () {
       var f = pill.dataset.filter;
       var v = pill.dataset.val;
       state[f] = v;
 
       // Update active pill styles per row
-      document.querySelectorAll('#brands [data-filter="'+f+'"]').forEach(function(p) {
+      document.querySelectorAll('#brands [data-filter="' + f + '"]').forEach(function (p) {
         p.classList.remove('active-neutral');
       });
 
@@ -1266,7 +1266,7 @@ updateCarousel();
     var cards = document.querySelectorAll('#brands .brands-card[data-product]');
     var visible = 0;
 
-    cards.forEach(function(card) {
+    cards.forEach(function (card) {
       var prod = card.dataset.product;
       var prodMatch = state.product === 'all' || prod === state.product;
 
@@ -1281,7 +1281,7 @@ updateCarousel();
     // Rebuild grid layout so hidden (absolute) cards don't leave gaps
     var grid = document.getElementById('brandsGrid');
     var allCards = Array.from(cards);
-    allCards.forEach(function(c) { grid.appendChild(c); });
+    allCards.forEach(function (c) { grid.appendChild(c); });
 
     var emptyMsg = document.getElementById('brandsEmptyMsg');
     if (emptyMsg) {

@@ -110,7 +110,7 @@ body {
   color: var(--color-navy-500);
   background-color: var(--color-white);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img {
@@ -2656,6 +2656,22 @@ h6 {
 @media (max-width: 768px) {
   :root {
     --section-padding: 80px 0;
+  }
+
+  .navbar {
+    padding: 10px 0;
+  }
+
+  .navbar.scrolled {
+    padding: 8px 0;
+  }
+
+  .nav-logo-img {
+    height: 50px;
+  }
+
+  .navbar.scrolled .nav-logo-img {
+    height: 40px;
   }
 
   .nav-links {

@@ -3286,7 +3286,7 @@ h6 {
 
 .carousel-card {
   position: absolute;
-  width: 380px;
+  width: min(380px, 85vw);
   height: 460px;
   left: 50%;
   top: 50%;
@@ -3384,6 +3384,63 @@ h6 {
 .carousel-details p {
   color: #9ca3af;
   line-height: 1.8;
+}
+
+/* --- Carousel Mobile Overrides --- */
+@media (max-width: 768px) {
+  .carousel-section {
+    padding: 3rem 0;
+  }
+
+  .carousel-title h2 {
+    font-size: 1.8rem;
+  }
+
+  .carousel-title p {
+    font-size: 0.9rem;
+    padding: 0 16px;
+  }
+
+  .carousel {
+    height: 380px;
+    perspective: 800px;
+  }
+
+  .carousel-card {
+    width: min(300px, 82vw);
+    height: 340px;
+  }
+
+  .carousel-content {
+    padding: 16px;
+  }
+
+  .carousel-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .carousel-content p {
+    font-size: 0.85rem;
+  }
+
+  .carousel-details {
+    padding: 0 20px;
+  }
+
+  .carousel-details h3 {
+    font-size: 1.4rem;
+  }
+
+  .carousel-details p {
+    font-size: 0.9rem;
+  }
+
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
 }
 
 /* ============================================

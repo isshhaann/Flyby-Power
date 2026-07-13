@@ -924,6 +924,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let active = 0;
 
     function updateCarousel() {
+      const isMobileCarousel = window.innerWidth < 768;
+      const sideOffset = isMobileCarousel ? 160 : 320;
+      const sideScale = isMobileCarousel ? 0.78 : 0.85;
 
       cards.forEach((card, index) => {
 
@@ -939,25 +942,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
           case 0:
             transform =
-              'translate(-50%,-50%) translateZ(150px) scale(1)';
+              `translate(-50%,-50%) translateZ(${isMobileCarousel ? 80 : 150}px) scale(1)`;
             opacity = 1;
             break;
 
           case -1:
             transform =
-              'translate(-50%,-50%) translateX(-320px) rotateY(35deg) scale(.85)';
-            opacity = .6;
+              `translate(-50%,-50%) translateX(-${sideOffset}px) rotateY(35deg) scale(${sideScale})`;
+            opacity = isMobileCarousel ? 0.4 : 0.6;
             break;
 
           case 1:
             transform =
-              'translate(-50%,-50%) translateX(320px) rotateY(-35deg) scale(.85)';
-            opacity = .6;
+              `translate(-50%,-50%) translateX(${sideOffset}px) rotateY(-35deg) scale(${sideScale})`;
+            opacity = isMobileCarousel ? 0.4 : 0.6;
             break;
 
           default:
             transform =
-              'translate(-50%,-50%) translateZ(-300px) scale(.7)';
+              `translate(-50%,-50%) translateZ(-300px) scale(.7)`;
             opacity = 0;
         }
 
@@ -982,6 +985,8 @@ document.addEventListener('DOMContentLoaded', () => {
       active = (active - 1 + cards.length) % cards.length;
       updateCarousel();
     };
+
+    window.addEventListener('resize', updateCarousel, { passive: true });
 
     updateCarousel();
   })();

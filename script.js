@@ -811,39 +811,219 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================
-  // SERVICE CARD TILT EFFECT
+  // SERVICES CAROUSEL & REVEAL ANIMATIONS
   // ============================================
-  const serviceCards = document.querySelectorAll('.service-card');
+  (function () {
+    const carousel = document.getElementById('servicesCarousel');
+    const wrapper = document.getElementById('servicesCarouselWrapper');
+    const prevBtn = document.getElementById('servicesPrevBtn');
+    const nextBtn = document.getElementById('servicesNextBtn');
 
-  serviceCards.forEach(card => {
-    let rect, centerX, centerY;
-    let ticking = false;
+    if (!carousel || !wrapper || !prevBtn || !nextBtn) return;
 
-    card.addEventListener('mouseenter', () => {
-      rect = card.getBoundingClientRect();
-      centerX = rect.width / 2;
-      centerY = rect.height / 2;
-    });
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = 0;
 
-    card.addEventListener('mousemove', (e) => {
-      if (!ticking && rect) {
-        window.requestAnimationFrame(() => {
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const rotateX = (y - centerY) / 20;
-          const rotateY = (centerX - x) / 20;
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-          ticking = false;
-        });
-        ticking = true;
+    // Calculate card width and gaps
+    const getCardWidth = () => {
+      const card = carousel.querySelector('.service-carousel-card');
+      return card ? card.offsetWidth : 320;
+    };
+
+    const getGap = () => 24;
+
+    const getMaxScroll = () => {
+      const wrapperWidth = wrapper.offsetWidth;
+      const totalWidth = carousel.scrollWidth;
+      return Math.max(0, totalWidth - wrapperWidth);
+    };
+
+    const updateButtons = () => {
+      const maxScroll = getMaxScroll();
+      
+      // Update prev button state
+      if (currentTranslate >= 0) {
+        prevBtn.style.opacity = '0.4';
+        prevBtn.style.pointerEvents = 'none';
+      } else {
+        prevBtn.style.opacity = '1';
+        prevBtn.style.pointerEvents = 'auto';
       }
+
+      // Update next button state
+      if (Math.abs(currentTranslate) >= maxScroll) {
+        nextBtn.style.opacity = '0.4';
+        nextBtn.style.pointerEvents = 'none';
+      } else {
+        nextBtn.style.opacity = '1';
+        nextBtn.style.pointerEvents = 'auto';
+      }
+    };
+
+    const setCarouselPosition = () => {
+      carousel.style.transform = `translate3d(${currentTranslate}px, 0, 0)`;
+    };
+
+    const smoothScrollTo = (targetTranslate) => {
+      const start = currentTranslate;
+      const change = targetTranslate - start;
+      const duration = 400; // ms
+      let startTime = null;
+
+      const animate = (currentTime) => {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        // Cubic ease-out curve
+        const ease = 1 - Math.pow(1 - progress, 3);
+        currentTranslate = start + change * ease;
+        setCarouselPosition();
+
+        if (timeElapsed < duration) {
+          animationID = requestAnimationFrame(animate);
+        } else {
+          currentTranslate = targetTranslate;
+          prevTranslate = currentTranslate;
+          updateButtons();
+        }
+      };
+
+      cancelAnimationFrame(animationID);
+      animationID = requestAnimationFrame(animate);
+    };
+
+    // Nav click events
+    prevBtn.addEventListener('click', () => {
+      const step = getCardWidth() + getGap();
+      let target = prevTranslate + step;
+      if (target > 0) target = 0;
+      smoothScrollTo(target);
     });
 
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      rect = null;
+    nextBtn.addEventListener('click', () => {
+      const step = getCardWidth() + getGap();
+      const maxScroll = getMaxScroll();
+      let target = prevTranslate - step;
+      if (Math.abs(target) > maxScroll) target = -maxScroll;
+      smoothScrollTo(target);
     });
-  });
+
+    // Touch and Drag implementation
+    const getPositionX = (e) => {
+      return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+    };
+
+    const startDrag = (e) => {
+      isDragging = true;
+      startX = getPositionX(e);
+      cancelAnimationFrame(animationID);
+      carousel.style.transition = 'none';
+    };
+
+    const drag = (e) => {
+      if (!isDragging) return;
+      const currentX = getPositionX(e);
+      const diff = currentX - startX;
+      let target = prevTranslate + diff;
+
+      // Elastic resistance at bounds
+      const maxScroll = getMaxScroll();
+      if (target > 0) {
+        target = target * 0.35;
+      } else if (Math.abs(target) > maxScroll) {
+        const overscroll = Math.abs(target) - maxScroll;
+        target = -maxScroll - overscroll * 0.35;
+      }
+
+      currentTranslate = target;
+      setCarouselPosition();
+    };
+
+    const endDrag = () => {
+      if (!isDragging) return;
+      isDragging = false;
+
+      const maxScroll = getMaxScroll();
+      let target = currentTranslate;
+
+      if (target > 0) {
+        target = 0;
+      } else if (Math.abs(target) > maxScroll) {
+        target = -maxScroll;
+      } else {
+        // Snap to nearest card item
+        const step = getCardWidth() + getGap();
+        const index = Math.round(Math.abs(target) / step);
+        target = -index * step;
+        if (Math.abs(target) > maxScroll) target = -maxScroll;
+      }
+
+      carousel.style.transition = 'transform 500ms cubic-bezier(0.25, 1, 0.5, 1)';
+      smoothScrollTo(target);
+    };
+
+    // Event listeners for dragging
+    wrapper.addEventListener('mousedown', startDrag);
+    window.addEventListener('mousemove', drag);
+    window.addEventListener('mouseup', endDrag);
+
+    wrapper.addEventListener('touchstart', startDrag, { passive: true });
+    window.addEventListener('touchmove', drag, { passive: true });
+    window.addEventListener('touchend', endDrag);
+
+    // Prevent click on drag
+    carousel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (Math.abs(currentTranslate - prevTranslate) > 8) {
+          e.preventDefault();
+        }
+      });
+    });
+
+    // Handle resize window
+    window.addEventListener('resize', () => {
+      currentTranslate = 0;
+      prevTranslate = 0;
+      setCarouselPosition();
+      updateButtons();
+    });
+
+    updateButtons();
+
+    // GSAP ScrollTrigger Reveal Motion
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const section = document.getElementById('services');
+      const badge = section.querySelector('.services-badge');
+      const title = section.querySelector('h2');
+      const desc = section.querySelector('p');
+      const navButtons = section.querySelectorAll('.carousel-nav-btn');
+      const cards = section.querySelectorAll('.service-carousel-card');
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+
+      if (badge) tl.fromTo(badge, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }, 0);
+      if (title) tl.fromTo(title, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.1);
+      if (desc) tl.fromTo(desc, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.3);
+      if (navButtons.length > 0) {
+        tl.fromTo(navButtons, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)', stagger: 0.1 }, 0.4);
+      }
+      if (cards.length > 0) {
+        tl.fromTo(cards, { opacity: 0, y: 50, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out', stagger: 0.1 }, 0.3);
+      }
+    }
+  })();
 
   // ============================================
   // ENERGY FLOW ANIMATION ON SCROLL

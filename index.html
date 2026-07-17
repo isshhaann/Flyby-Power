@@ -91,25 +91,23 @@
       <!-- Solar panel glow -->
       <div class="hero-panel-glow" id="heroPanelGlow"></div>
 
-      <div class="hero-content" id="heroContent">
-        <div class="hero-eyebrow" id="heroEyebrow">
-          <span class="hero-badge-dot"></span>
-          Solar • Wind • EV Charging
-        </div>
-        <h1 id="heroHeading">Powering a <span class="highlight">Cleaner Future</span> with Renewable Energy Solutions
-        </h1>
-        <p class="hero-subtitle" id="heroSubtitle">Expert solar installation, preventive maintenance, energy auditing,
-          EV charger installation, technical training, and wind energy solutions for homes, businesses, and
-          institutions.</p>
-        <div class="hero-buttons" id="heroButtons">
-          <a href="#contact" class="btn btn-primary" id="heroBtnPrimary">
-            <i data-lucide="phone" style="width:18px;height:18px"></i>
-            Get a Free Consultation
-          </a>
-          <a href="#services" class="btn btn-secondary" id="heroBtnSecondary">
-            <i data-lucide="arrow-down-circle" style="width:18px;height:18px"></i>
-            Explore Our Services
-          </a>
+      <div class="container">
+        <div class="hero-content" id="heroContent">
+          <h1 id="heroHeading">Powering a <span class="highlight">Cleaner Future</span> with Renewable Energy Solutions
+          </h1>
+          <p class="hero-subtitle" id="heroSubtitle">Expert solar installation, preventive maintenance, energy auditing,
+            EV charger installation, technical training, and wind energy solutions for homes, businesses, and
+            institutions.</p>
+          <div class="hero-buttons" id="heroButtons">
+            <a href="#contact" class="btn btn-primary" id="heroBtnPrimary">
+              <i data-lucide="phone" style="width:18px;height:18px"></i>
+              Get a Free Consultation
+            </a>
+            <a href="#services" class="btn btn-secondary" id="heroBtnSecondary">
+              <i data-lucide="arrow-down-circle" style="width:18px;height:18px"></i>
+              Explore Our Services
+            </a>
+          </div>
         </div>
       </div>
 
@@ -126,32 +124,32 @@
   <div class="energy-flow-section">
     <div class="container">
       <div class="energy-flow-container">
-        <div class="energy-node reveal stagger-1">
+        <div class="energy-node node-1 reveal stagger-1">
           <div class="energy-node-icon">☀️</div>
           <div class="energy-node-label">Sunlight</div>
         </div>
         <div class="energy-arrow reveal stagger-2">→</div>
-        <div class="energy-node reveal stagger-2">
+        <div class="energy-node node-2 reveal stagger-2">
           <div class="energy-node-icon">🔋</div>
           <div class="energy-node-label">Solar Panels</div>
         </div>
         <div class="energy-arrow reveal stagger-3">→</div>
-        <div class="energy-node reveal stagger-3">
+        <div class="energy-node node-3 reveal stagger-3">
           <div class="energy-node-icon">⚡</div>
           <div class="energy-node-label">Clean Energy</div>
         </div>
         <div class="energy-arrow reveal stagger-4">→</div>
-        <div class="energy-node reveal stagger-4">
+        <div class="energy-node node-4 reveal stagger-4">
           <div class="energy-node-icon">🏠</div>
           <div class="energy-node-label">Homes</div>
         </div>
         <div class="energy-arrow reveal stagger-5">→</div>
-        <div class="energy-node reveal stagger-5">
+        <div class="energy-node node-5 reveal stagger-5">
           <div class="energy-node-icon">🏢</div>
           <div class="energy-node-label">Businesses</div>
         </div>
         <div class="energy-arrow reveal stagger-6">→</div>
-        <div class="energy-node reveal stagger-6">
+        <div class="energy-node node-6 reveal stagger-6">
           <div class="energy-node-icon">🚗</div>
           <div class="energy-node-label">EV Charging</div>
         </div>
@@ -237,106 +235,95 @@
   <!-- ============================================
        SERVICES SECTION
        ============================================ -->
-  <section class="section section-light" id="services">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label reveal">Our Services</div>
-        <h2 class="section-title reveal">Comprehensive <span class="text-gradient">Renewable Energy</span> Solutions
-        </h2>
-        <p class="section-desc reveal">From solar panel installation to EV charging — we provide end-to-end clean energy
-          services for residential, commercial, and institutional clients.</p>
+  <section class="services-section" id="services">
+    <div class="services-container">
+      <div class="services-header">
+        <div class="services-header-left">
+          <div class="services-badge">
+            <span class="badge-dot"></span>
+            Our Services
+          </div>
+          <h2>Powering a cleaner, smarter future</h2>
+          <p>We deliver smart green energy solutions that cut costs and power a cleaner future.</p>
+        </div>
+        <div class="services-header-right">
+          <button class="carousel-nav-btn prev-btn" id="servicesPrevBtn" aria-label="Previous service">
+            <i data-lucide="arrow-left" style="width:20px;height:20px"></i>
+          </button>
+          <button class="carousel-nav-btn next-btn" id="servicesNextBtn" aria-label="Next service">
+            <i data-lucide="arrow-right" style="width:20px;height:20px"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="services-grid">
-        <!-- Solar Panel Installation -->
-        <div class="service-card reveal stagger-1">
-          <div class="service-icon">
-            <i data-lucide="sun" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+      <div class="services-carousel-wrapper" id="servicesCarouselWrapper">
+        <div class="services-carousel" id="servicesCarousel">
+          <!-- Solar Panel Installation -->
+          <div class="service-carousel-card">
+            <div class="card-image-wrapper">
+              <img src="images/solar-installation.png" alt="Solar Panel Installation" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>Solar Panel Installation</h3>
+              <p>Residential and commercial solar panel installation with professional design and commissioning.</p>
+            </div>
           </div>
-          <h3>Solar Panel Installation</h3>
-          <p>Residential and commercial solar panel installation with professional system design, installation, and
-            commissioning.</p>
-          <div class="service-tags">
-            <span class="service-tag">On-grid</span>
-            <span class="service-tag">Hybrid</span>
-            <span class="service-tag">Residential</span>
-            <span class="service-tag">Commercial</span>
-          </div>
-        </div>
 
-        <!-- Operation & Maintenance -->
-        <div class="service-card reveal stagger-2">
-          <div class="service-icon">
-            <i data-lucide="settings" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          <!-- Operation & Preventive Maintenance -->
+          <div class="service-carousel-card">
+            <div class="card-image-wrapper">
+              <img src="images/preventive-maintenance.png" alt="Operation & Preventive Maintenance" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>Operation & Preventive Maintenance</h3>
+              <p>Regular inspection, cleaning, performance monitoring, and preventive maintenance.</p>
+            </div>
           </div>
-          <h3>Operation & Preventive Maintenance</h3>
-          <p>Regular inspection, cleaning, performance monitoring, wiring checks, inverter inspection, and preventive
-            maintenance.</p>
-          <div class="service-tags">
-            <span class="service-tag">Inspection</span>
-            <span class="service-tag">Cleaning</span>
-            <span class="service-tag">Monitoring</span>
-          </div>
-        </div>
 
-        <!-- Energy Auditing -->
-        <div class="service-card reveal stagger-3">
-          <div class="service-icon">
-            <i data-lucide="bar-chart-3" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          <!-- Energy Auditing -->
+          <div class="service-carousel-card">
+            <div class="card-image-wrapper">
+              <img src="images/energy-audit.png" alt="Energy Auditing" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>Energy Auditing</h3>
+              <p>Professional audits to analyze usage and recommend cost-saving energy solutions.</p>
+            </div>
           </div>
-          <h3>Energy Auditing</h3>
-          <p>Professional energy audits to analyze power usage, identify energy losses, and recommend cost-saving
-            renewable energy solutions.</p>
-          <div class="service-tags">
-            <span class="service-tag">Analysis</span>
-            <span class="service-tag">Optimization</span>
-            <span class="service-tag">Savings</span>
-          </div>
-        </div>
 
-        <!-- EV Charger Installation -->
-        <div class="service-card reveal stagger-4">
-          <div class="service-icon">
-            <i data-lucide="plug-zap" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          <!-- EV Charger Installation -->
+          <div class="service-carousel-card">
+            <div class="card-image-wrapper">
+              <img src="images/ev-charger.png" alt="EV Charger Installation" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>EV Charger Installation</h3>
+              <p>Installation of EV chargers for homes, commercial spaces, and public locations.</p>
+            </div>
           </div>
-          <h3>EV Charger Installation</h3>
-          <p>Installation of electric vehicle chargers for homes, apartments, offices, commercial spaces, and public
-            charging locations.</p>
-          <div class="service-tags">
-            <span class="service-tag">Home</span>
-            <span class="service-tag">Commercial</span>
-            <span class="service-tag">Public</span>
-          </div>
-        </div>
 
-        <!-- Technical Training -->
-        <div class="service-card reveal stagger-5">
-          <div class="service-icon">
-            <i data-lucide="graduation-cap" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          <!-- Technical Training -->
+          <div class="service-carousel-card">
+            <div class="card-image-wrapper">
+              <img src="images/training.png" alt="Technical Training" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>Technical Training</h3>
+              <p>Practical training programs focusing on solar technology and maintenance.</p>
+            </div>
           </div>
-          <h3>Technical Training</h3>
-          <p>Practical renewable energy training programs for students focusing on solar technology, installation, and
-            maintenance.</p>
-          <div class="service-tags">
-            <span class="service-tag">Hands-on</span>
-            <span class="service-tag">Solar Tech</span>
-            <span class="service-tag">Certification</span>
-          </div>
-        </div>
 
-        <!-- Wind Energy -->
-        <div class="service-card reveal stagger-6">
-          <div class="service-icon">
-            <i data-lucide="wind" style="width:28px;height:28px;color:var(--color-green-500)"></i>
+          <!-- Wind Energy -->
+          <div class="service-carousel-card">
+            <div class="card-image-wrapper">
+              <img src="images/wind-turbines.png" alt="Wind Energy" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>Wind Energy</h3>
+              <p>Wind energy solutions and consultation for residential and commercial systems.</p>
+            </div>
           </div>
-          <h3>Wind Energy</h3>
-          <p>Wind energy solutions and consultation for suitable residential, commercial, agricultural, and
-            institutional applications.</p>
-          <div class="service-tags">
-            <span class="service-tag">Residential</span>
-            <span class="service-tag">Commercial</span>
-            <span class="service-tag">Agricultural</span>
-          </div>
+
         </div>
       </div>
     </div>
@@ -1288,6 +1275,56 @@
   </section>
 
   <!-- ============================================
+       TRUSTED EV PARTNERS SECTION
+       ============================================ -->
+  <section class="section partners" id="ev-partners" style="border-top: 1px solid var(--color-border); padding-top: 80px;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label reveal">EV Partners</div>
+        <h2 class="section-title reveal">Trusted EV partners<br>powering your drive</h2>
+        <p class="section-desc reveal">We partner with the world's leading electric vehicle charging manufacturers to deliver robust charging infrastructure.</p>
+      </div>
+
+      <div class="bs-grid" id="evGrid">
+        <a class="bs-card reveal stagger-1" href="#" data-color="#E82127" aria-label="BYD">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#E82127; filter: none; opacity: 1;">
+            <img src="images/byd-logo.png" alt="BYD" style="width: auto; height: 58px; max-width: 180px; object-fit: contain;">
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-2" href="#" data-color="#002C5F" aria-label="Hyundai">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#002C5F; filter: none; opacity: 1;">
+            <img src="images/hyundai-logo.png" alt="Hyundai" style="width: auto; height: 62px; max-width: 180px; object-fit: contain;">
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-3" href="#" data-color="#0D3082" aria-label="Volvo">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#0D3082; filter: none; opacity: 1;">
+            <img src="images/volvo-logo.png" alt="Volvo" style="width: auto; height: 64px; max-width: 180px; object-fit: contain;">
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-4" href="#" data-color="#002C5F" aria-label="Maruti Suzuki">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#002C5F; filter: none; opacity: 1;">
+            <img src="images/maruti-logo.png" alt="Maruti Suzuki" style="width: auto; height: 64px; max-width: 180px; object-fit: contain;">
+          </span>
+        </a>
+
+        <a class="bs-card reveal stagger-1" href="#" data-color="#333333" aria-label="BharatBenz">
+          <div class="bs-spot"></div>
+          <span class="bs-mark" style="color:#333333; filter: none; opacity: 1;">
+            <img src="images/bharatbenz-logo.png" alt="BharatBenz" style="width: auto; height: 66px; max-width: 180px; object-fit: contain;">
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
        INSTAGRAM REELS SECTION
        ============================================ -->
   <section class="section reels-section" id="reels">
@@ -1527,6 +1564,30 @@
               fundamentals through hands-on, practical sessions.
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FAULT DIAGNOSIS CTA SECTION
+       ============================================ -->
+  <section class="section section-light" id="diagnosis-cta">
+    <div class="container">
+      <div class="diagnosis-cta-card">
+        <div class="diagnosis-cta-content">
+          <div class="services-badge" style="margin-bottom: 16px;">
+            <span class="badge-dot"></span>
+            Fault Diagnosis
+          </div>
+          <h2>Experiencing system issues?</h2>
+          <p>Upload photos or videos of your solar panels, inverters, or EV chargers for a professional diagnostic review by our technical team.</p>
+        </div>
+        <div>
+          <a href="ai-diagnosis.html" class="btn btn-primary">
+            Get Professional Diagnosis
+            <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+          </a>
         </div>
       </div>
     </div>

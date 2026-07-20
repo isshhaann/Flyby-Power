@@ -228,16 +228,16 @@ h6 {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 20px 0;
+  padding: 16px 0; /* constant padding on all states */
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 12px 0;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 16px 0; /* stays same size on scroll */
+  box-shadow: none;
 }
 
 .navbar .container {
@@ -257,19 +257,10 @@ h6 {
   transition: color var(--transition-normal);
 }
 
-.navbar.scrolled .nav-logo {
-  color: var(--color-navy-500);
-}
-
 .nav-logo-img {
-  height: 120px;
+  height: 90px; /* constant logo height */
   width: auto;
   display: block;
-  transition: height var(--transition-normal);
-}
-
-.navbar.scrolled .nav-logo-img {
-  height: 90px;
 }
 
 @keyframes shimmer {
@@ -297,8 +288,11 @@ h6 {
   letter-spacing: 0.02em;
 }
 
-.navbar.scrolled .nav-links a {
+.navbar.nav-bg-light .nav-links a {
   color: var(--color-navy-500);
+}
+.navbar.nav-bg-dark .nav-links a {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .nav-links a::after {
@@ -322,8 +316,11 @@ h6 {
   color: var(--color-green-300);
 }
 
-.navbar.scrolled .nav-links a:hover {
-  color: var(--color-green-500);
+.navbar.nav-bg-light .nav-links a:hover {
+  color: var(--color-green-600);
+}
+.navbar.nav-bg-dark .nav-links a:hover {
+  color: var(--color-green-300);
 }
 
 .nav-cta {
@@ -367,8 +364,11 @@ h6 {
   transition: opacity var(--transition-normal), transform var(--transition-normal), background-color var(--transition-normal), border-color var(--transition-normal), color var(--transition-normal);
 }
 
-.navbar.scrolled .nav-hamburger span {
+.navbar.nav-bg-light .nav-hamburger span {
   background: var(--color-navy-500);
+}
+.navbar.nav-bg-dark .nav-hamburger span {
+  background: var(--color-white);
 }
 
 .nav-hamburger.active span:nth-child(1) {
@@ -1450,364 +1450,7 @@ h6 {
   line-height: 1.7;
 }
 
-/* ============================================
-   MAINTENANCE SECTION
-   ============================================ */
-.maintenance-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
 
-.maintenance-visual {
-  position: relative;
-}
-
-.maintenance-panel-compare {
-  position: relative;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
-  height: 400px;
-  background: var(--color-navy-600);
-}
-
-.panel-dirty,
-.panel-clean {
-  position: absolute;
-  inset: 0;
-}
-
-.panel-dirty {
-  background: linear-gradient(135deg, #5d4037, #3e2723),
-    repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(255, 255, 255, 0.05) 38px, rgba(255, 255, 255, 0.05) 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(255, 255, 255, 0.05) 38px, rgba(255, 255, 255, 0.05) 40px);
-  background-blend-mode: overlay;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 8%;
-}
-
-.panel-clean {
-  background: linear-gradient(135deg, #0d47a1, #1976d2),
-    repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(255, 255, 255, 0.1) 38px, rgba(255, 255, 255, 0.1) 40px),
-    repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(255, 255, 255, 0.1) 38px, rgba(255, 255, 255, 0.1) 40px);
-  background-blend-mode: overlay;
-  clip-path: inset(0 calc(100% - var(--exposure)) 0 0);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 8%;
-  z-index: 1;
-}
-
-/* Slider overlay */
-.compare-slider {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: ew-resize;
-  z-index: 10;
-  margin: 0;
-  padding: 0;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.compare-handle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--exposure);
-  width: 3px;
-  background: var(--color-white);
-  transform: translateX(-50%);
-  z-index: 5;
-  pointer-events: none;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.compare-handle-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  background: var(--color-white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-lg);
-  border: 2px solid var(--color-green-400);
-}
-
-.panel-label {
-  color: white;
-  font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-align: center;
-  padding: 20px;
-}
-
-.panel-label span {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 400;
-  opacity: 0.8;
-  margin-top: 8px;
-}
-
-.efficiency-meter {
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: var(--radius-lg);
-  padding: 16px 24px;
-  box-shadow: var(--shadow-md);
-  text-align: center;
-  z-index: 2;
-}
-
-.efficiency-value {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--color-green-500);
-}
-
-.efficiency-label {
-  font-size: 0.75rem;
-  color: var(--color-dark-grey);
-  font-weight: 500;
-}
-
-.maintenance-content h3 {
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-  font-weight: 800;
-  color: var(--color-navy-500);
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
-}
-
-.maintenance-content p {
-  font-size: 1.05rem;
-  color: var(--color-dark-grey);
-  line-height: 1.8;
-  margin-bottom: 28px;
-}
-
-.maintenance-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.maintenance-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--color-navy-500);
-}
-
-.maintenance-item-icon {
-  width: 28px;
-  height: 28px;
-  background: var(--color-green-50);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-green-500);
-  font-size: 0.8rem;
-  flex-shrink: 0;
-}
-
-/* ============================================
-   ENERGY AUDIT SECTION
-   ============================================ */
-.audit-dashboard {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.audit-content h3 {
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-  font-weight: 800;
-  color: var(--color-navy-500);
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
-}
-
-.audit-content p {
-  font-size: 1.05rem;
-  color: var(--color-dark-grey);
-  line-height: 1.8;
-  margin-bottom: 28px;
-}
-
-.audit-visual {
-  position: relative;
-}
-
-.audit-chart-container {
-  background: var(--color-white);
-  border-radius: var(--radius-xl);
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  border: 1px solid var(--color-grey);
-}
-
-.audit-chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
-}
-
-.audit-chart-title {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--color-navy-500);
-}
-
-.audit-chart-badge {
-  padding: 4px 12px;
-  background: var(--color-green-50);
-  color: var(--color-green-600);
-  font-size: 0.75rem;
-  font-weight: 700;
-  border-radius: var(--radius-full);
-}
-
-.audit-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.audit-bar-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.audit-bar-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: var(--color-dark-grey);
-  font-weight: 500;
-}
-
-.audit-bar-track {
-  height: 12px;
-  background: var(--color-light-grey);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.audit-bar-fill {
-  height: 100%;
-  border-radius: var(--radius-full);
-  background: var(--gradient-primary);
-  width: 0%;
-  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.audit-bar-fill.waste {
-  background: linear-gradient(90deg, #ef5350, #e53935);
-}
-
-.audit-bar-fill.optimize {
-  background: linear-gradient(90deg, #fdd835, #f9a825);
-}
-
-.audit-bar-fill.save {
-  background: var(--gradient-primary);
-}
-
-.audit-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.audit-metric {
-  text-align: center;
-  padding: 16px;
-  background: var(--color-light-grey);
-  border-radius: var(--radius-md);
-}
-
-.audit-metric-value {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--color-green-500);
-}
-
-.audit-metric-label {
-  font-size: 0.75rem;
-  color: var(--color-dark-grey);
-  font-weight: 500;
-  margin-top: 4px;
-}
-
-.audit-process-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.audit-process-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px;
-  background: var(--color-light-grey);
-  border-radius: var(--radius-md);
-  transition: opacity var(--transition-normal), transform var(--transition-normal), background-color var(--transition-normal), border-color var(--transition-normal), color var(--transition-normal);
-}
-
-.audit-process-item:hover {
-  background: var(--color-green-50);
-  transform: translateX(4px);
-}
-
-.audit-process-number {
-  width: 36px;
-  height: 36px;
-  background: var(--gradient-primary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 0.85rem;
-  flex-shrink: 0;
-}
-
-.audit-process-text {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--color-navy-500);
-}
 
 /* ============================================
    EV CHARGER SECTION
@@ -2896,8 +2539,6 @@ h6 {
   }
 
   .about-grid,
-  .maintenance-grid,
-  .audit-dashboard,
   .ev-grid,
   .training-layout,
   .wind-layout,
@@ -2972,9 +2613,7 @@ h6 {
     grid-template-columns: 1fr;
   }
 
-  .maintenance-list {
-    grid-template-columns: 1fr;
-  }
+
 
   .ev-cards {
     grid-template-columns: 1fr;
@@ -2992,9 +2631,7 @@ h6 {
     grid-template-columns: 1fr;
   }
 
-  .audit-metrics {
-    grid-template-columns: 1fr;
-  }
+
 
   .cta-buttons {
     flex-direction: column;
@@ -3736,10 +3373,58 @@ h6 {
   background: var(--color-off-white);
 }
 
-.bs-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+.marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-off-white) 20%, transparent);
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-off-white) 20%, transparent);
+}
+
+.marquee-container {
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: default;
+  padding: 12px 0;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-container::-webkit-scrollbar {
+  display: none;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-track .bs-card {
+  width: 240px;
+  flex-shrink: 0;
 }
 
 .bs-card {
@@ -3810,11 +3495,7 @@ h6 {
   white-space: nowrap;
 }
 
-@media (max-width: 760px) {
-  .bs-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -4407,3 +4088,68 @@ h6 {
     gap: 24px;
   }
 }
+
+/* ============================================
+   EXPANDABLE PARTNER BRANDS REDESIGN
+   ============================================ */
+.btn-toggle-brands {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  color: var(--color-green-400);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.btn-toggle-brands:hover {
+  border-color: var(--color-green-400);
+  background: rgba(76, 175, 80, 0.05);
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-toggle-brands .btn-chevron {
+  display: inline-flex;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-toggle-brands:hover .btn-chevron {
+  transform: translateY(2px);
+}
+
+.btn-toggle-brands.expanded:hover .btn-chevron {
+  transform: translateY(-2px) rotate(180deg);
+}
+
+.btn-toggle-brands.expanded .btn-chevron {
+  transform: rotate(180deg);
+}
+
+/* Staggered card transitions when expanded */
+#brandsGridExtra .brands-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 350ms cubic-bezier(0.25, 1, 0.5, 1), transform 350ms cubic-bezier(0.25, 1, 0.5, 1), scale 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brands-extra-wrap.expanded #brandsGridExtra .brands-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brands-extra-wrap.expanded #brandsGridExtra .brands-card:nth-child(1) { transition-delay: 30ms; }
+.brands-extra-wrap.expanded #brandsGridExtra .brands-card:nth-child(2) { transition-delay: 60ms; }
+.brands-extra-wrap.expanded #brandsGridExtra .brands-card:nth-child(3) { transition-delay: 90ms; }
+.brands-extra-wrap.expanded #brandsGridExtra .brands-card:nth-child(4) { transition-delay: 120ms; }
+.brands-extra-wrap.expanded #brandsGridExtra .brands-card:nth-child(5) { transition-delay: 150ms; }
+.brands-extra-wrap.expanded #brandsGridExtra .brands-card:nth-child(6) { transition-delay: 180ms; }
+.brands-extra-wrap.expanded #brandsGridExtra .brands-card:nth-child(7) { transition-delay: 210ms; }

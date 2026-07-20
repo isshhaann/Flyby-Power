@@ -50,38 +50,63 @@ document.addEventListener('DOMContentLoaded', () => {
   const navHamburger = document.getElementById('navHamburger');
   const navOverlay = document.getElementById('navOverlay');
   const allNavLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id]');
 
-  // Sticky navbar on scroll
+  // Sticky navbar on scroll & dynamic color change based on background
   let lastScrollY = 0;
   const handleScroll = () => {
     const scrollY = window.scrollY;
-    const heroScrollWrapper = document.getElementById('heroScrollWrapper');
-    const carouselSection = document.querySelector('.carousel-section');
+    const navbarHeight = navbar.offsetHeight;
 
-    let isInsideTransparentSection = false;
-
-    // Check if inside hero section
-    let heroThreshold = 80;
-    if (heroScrollWrapper) {
-      heroThreshold = heroScrollWrapper.offsetHeight - window.innerHeight - 80;
-      if (heroThreshold < 80) heroThreshold = 80;
-    }
-    if (scrollY <= heroThreshold) {
-      isInsideTransparentSection = true;
-    }
-
-    // Check if inside "Our Solutions" carousel section
-    if (carouselSection) {
-      const rect = carouselSection.getBoundingClientRect();
-      if (rect.top <= 80 && rect.bottom >= 80) {
-        isInsideTransparentSection = true;
-      }
-    }
-
-    if (isInsideTransparentSection) {
-      navbar.classList.remove('scrolled');
-    } else {
+    // Toggle scrolled state helper class
+    if (scrollY > 50) {
       navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+
+    // Find the section currently under the navbar
+    let activeSection = null;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollY >= top - 80 && scrollY < top + height - 80) {
+        activeSection = section;
+      }
+    });
+
+    if (activeSection) {
+      // Determine if active section is dark or light using computed background color
+      const computedBg = window.getComputedStyle(activeSection).backgroundColor;
+      let rgb = computedBg.match(/\d+/g);
+      let isDark = false;
+
+      if (rgb && rgb.length >= 3) {
+        const r = parseInt(rgb[0]);
+        const g = parseInt(rgb[1]);
+        const b = parseInt(rgb[2]);
+        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        if (luminance < 0.5) {
+          isDark = true;
+        }
+      } else {
+        // Fallback for dark backgrounds
+        if (activeSection.id === 'home' || activeSection.classList.contains('dark-bg')) {
+          isDark = true;
+        }
+      }
+
+      if (isDark) {
+        navbar.classList.add('nav-bg-dark');
+        navbar.classList.remove('nav-bg-light');
+      } else {
+        navbar.classList.add('nav-bg-light');
+        navbar.classList.remove('nav-bg-dark');
+      }
+    } else {
+      // Default state above first section (dark background on Hero)
+      navbar.classList.add('nav-bg-dark');
+      navbar.classList.remove('nav-bg-light');
     }
 
     lastScrollY = scrollY;
@@ -115,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Active nav link on scroll
-  const sections = document.querySelectorAll('section[id]');
+  // sections are already queried at the top
   let sectionData = [];
 
   function cacheSectionData() {
@@ -218,28 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(update);
   }
 
-  // ============================================
-  // AUDIT BARS ANIMATION
-  // ============================================
-  const auditBars = document.querySelectorAll('.audit-bar-fill');
 
-  const auditObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const width = entry.target.getAttribute('data-width');
-        setTimeout(() => {
-          entry.target.style.width = width + '%';
-        }, 300);
-        auditObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.3
-  });
-
-  auditBars.forEach(bar => {
-    auditObserver.observe(bar);
-  });
 
   // ============================================
   // SOLAR SAVINGS CALCULATOR
@@ -328,88 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCalculator(); // Initialize values
   }
 
-  // ============================================
-  // MAINTENANCE COMPARISON SLIDER
-  // ============================================
-  const panelCompare = document.getElementById('panelCompare');
-  const compareSlider = document.getElementById('compareSlider');
-  const efficiencyValue = document.getElementById('efficiencyValue');
-  const maintenanceSection = document.getElementById('maintenance');
-  let sliderAnimated = false;
-  let animFrameId = null;
 
-  function updateSliderValue(val) {
-    if (compareSlider) compareSlider.value = val;
-    if (panelCompare) panelCompare.style.setProperty('--exposure', `${val}%`);
-
-    // Update efficiency value dynamically based on slider value
-    const minEff = 65;
-    const maxEff = 98;
-    const currentEff = Math.round(minEff + (val / 100) * (maxEff - minEff));
-    if (efficiencyValue) {
-      efficiencyValue.textContent = `${currentEff}%`;
-      // Update efficiency text color based on value
-      if (currentEff > 90) {
-        efficiencyValue.style.color = '#2e7d32';
-      } else if (currentEff > 80) {
-        efficiencyValue.style.color = '#4caf50';
-      } else {
-        efficiencyValue.style.color = '#f9a825';
-      }
-    }
-  }
-
-  // Handle manual interaction
-  if (compareSlider) {
-    compareSlider.addEventListener('input', (e) => {
-      // Cancel any running auto-animation
-      if (animFrameId) {
-        cancelAnimationFrame(animFrameId);
-        animFrameId = null;
-      }
-      sliderAnimated = true; // prevent re-triggering auto-animation
-      updateSliderValue(e.target.value);
-    });
-  }
-
-  // Auto-animation on scroll reveal
-  if (maintenanceSection) {
-    const maintenanceObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !sliderAnimated) {
-          sliderAnimated = true;
-
-          // Animate slider from 50 (middle) to 100 (fully clean)
-          const duration = 2000;
-          const startTime = performance.now();
-          const startVal = 50;
-          const endVal = 100;
-
-          function tick(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
-            const easeOut = 1 - Math.pow(1 - progress, 3);
-            const currentVal = startVal + (endVal - startVal) * easeOut;
-
-            updateSliderValue(currentVal);
-
-            if (progress < 1) {
-              animFrameId = requestAnimationFrame(tick);
-            } else {
-              animFrameId = null;
-            }
-          }
-
-          animFrameId = requestAnimationFrame(tick);
-        }
-      });
-    }, {
-      threshold: 0.3
-    });
-
-    maintenanceObserver.observe(maintenanceSection);
-  }
 
   // ============================================
   // FAQ ACCORDION
@@ -1066,7 +989,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'images/ev-charger.png',
     'images/wind-turbines.png',
     'images/training.png',
-    'images/energy-audit.png',
     'images/solar-installation.png'
   ];
 
@@ -1395,9 +1317,31 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!brandsSection) return;
 
   var state = { product: 'all' };
+  let isExpanded = false;
+
+  const gridWrap = document.querySelector('#brands .grid-wrap');
+  const brandsGrid = document.getElementById('brandsGrid');
+  const btnToggleBrands = document.getElementById('btnToggleBrands');
+
+  // Create the extra grid wrapper dynamically
+  const brandsExtraWrap = document.createElement('div');
+  brandsExtraWrap.id = 'brandsExtraWrap';
+  brandsExtraWrap.className = 'brands-extra-wrap';
+  brandsExtraWrap.style.height = '0px';
+  brandsExtraWrap.style.overflow = 'hidden';
+  brandsExtraWrap.style.transition = 'height 350ms ease-in-out';
+
+  const brandsGridExtra = document.createElement('div');
+  brandsGridExtra.id = 'brandsGridExtra';
+  brandsGridExtra.className = 'brands-grid';
+  brandsGridExtra.style.paddingTop = '20px';
+
+  brandsExtraWrap.appendChild(brandsGridExtra);
+  gridWrap.appendChild(brandsExtraWrap);
 
   // Spotlight follow using RequestAnimationFrame for performance
-  document.querySelectorAll('.brands-card').forEach(function (card) {
+  const cards = Array.from(document.querySelectorAll('.brands-card'));
+  cards.forEach(function (card) {
     var spot = card.querySelector('.spot');
     var color = card.dataset.color || '#888';
     let r;
@@ -1439,38 +1383,224 @@ document.addEventListener('DOMContentLoaded', () => {
 
       pill.classList.add('active-neutral');
 
+      // Reset to collapsed on filter change to behave nicely
+      isExpanded = false;
+      brandsExtraWrap.classList.remove('expanded');
+      if (btnToggleBrands) btnToggleBrands.classList.remove('expanded');
+
       applyFilters();
-      // ScrollTrigger refresh in case layout height changes
-      if (typeof ScrollTrigger !== 'undefined') {
-        setTimeout(() => ScrollTrigger.refresh(), 350);
-      }
     });
   });
 
   function applyFilters() {
-    var cards = document.querySelectorAll('#brands .brands-card[data-product]');
-    var visible = 0;
-
-    cards.forEach(function (card) {
+    const activeCards = cards.filter(function (card) {
       var prod = card.dataset.product;
-      var prodMatch = state.product === 'all' || prod === state.product;
+      return state.product === 'all' || prod === state.product;
+    });
 
-      if (prodMatch) {
+    // Hide inactive cards
+    cards.forEach(function (card) {
+      if (activeCards.includes(card)) {
         card.classList.remove('hidden');
-        visible++;
       } else {
         card.classList.add('hidden');
       }
     });
 
-    // Rebuild grid layout so hidden (absolute) cards don't leave gaps
-    var grid = document.getElementById('brandsGrid');
-    var allCards = Array.from(cards);
-    allCards.forEach(function (c) { grid.appendChild(c); });
+    // Distribute matching cards: first 4 in featured grid, remaining in extra grid
+    const featuredCards = activeCards.slice(0, 4);
+    const extraCards = activeCards.slice(4);
 
+    featuredCards.forEach(function (card) {
+      brandsGrid.appendChild(card);
+    });
+
+    extraCards.forEach(function (card) {
+      brandsGridExtra.appendChild(card);
+      // Lazy load images: cache source in data-src initially
+      const img = card.querySelector('img');
+      if (img && img.src && !card.dataset.src) {
+        card.dataset.src = img.src;
+        img.removeAttribute('src');
+      }
+    });
+
+    // Update empty message
     var emptyMsg = document.getElementById('brandsEmptyMsg');
     if (emptyMsg) {
-      emptyMsg.classList.toggle('show', visible === 0);
+      emptyMsg.classList.toggle('show', activeCards.length === 0);
+    }
+
+    // Toggle button visibility and height
+    const btnWrap = document.querySelector('.brands-btn-wrap');
+    if (activeCards.length > 4) {
+      if (btnWrap) btnWrap.style.display = 'block';
+      if (btnToggleBrands) {
+        btnToggleBrands.querySelector('.btn-text').textContent = 'View All ' + activeCards.length + ' Brands';
+      }
+      brandsExtraWrap.style.height = '0px';
+    } else {
+      if (btnWrap) btnWrap.style.display = 'none';
+      brandsExtraWrap.style.height = '0px';
+    }
+
+    // ScrollTrigger refresh
+    if (typeof ScrollTrigger !== 'undefined') {
+      setTimeout(() => ScrollTrigger.refresh(), 350);
     }
   }
+
+  // Toggle button event listener
+  if (btnToggleBrands) {
+    btnToggleBrands.addEventListener('click', function () {
+      isExpanded = !isExpanded;
+      const activeCardsCount = cards.filter(function (card) {
+        var prod = card.dataset.product;
+        return state.product === 'all' || prod === state.product;
+      }).length;
+
+      if (isExpanded) {
+        brandsExtraWrap.classList.add('expanded');
+        btnToggleBrands.classList.add('expanded');
+        
+        // Restore lazy loaded images when expanding
+        brandsGridExtra.querySelectorAll('.brands-card').forEach(function (card) {
+          const img = card.querySelector('img');
+          if (img && card.dataset.src) {
+            img.src = card.dataset.src;
+            delete card.dataset.src;
+          }
+        });
+
+        brandsExtraWrap.style.height = brandsGridExtra.scrollHeight + 'px';
+        btnToggleBrands.querySelector('.btn-text').textContent = 'Show Less';
+      } else {
+        brandsExtraWrap.classList.remove('expanded');
+        btnToggleBrands.classList.remove('expanded');
+        brandsExtraWrap.style.height = '0px';
+        btnToggleBrands.querySelector('.btn-text').textContent = 'View All ' + activeCardsCount + ' Brands';
+      }
+
+      if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 350);
+      }
+    });
+  }
+
+  // Adjust expanded height dynamically on window resize
+  window.addEventListener('resize', function () {
+    if (isExpanded && brandsExtraWrap.classList.contains('expanded')) {
+      brandsExtraWrap.style.height = brandsGridExtra.scrollHeight + 'px';
+    }
+  });
+
+  // Run filter distribution on initial page load
+  applyFilters();
 })();
+
+// ============================================
+// PARTNERS & BRANDS MARQUEE LOGIC
+// ============================================
+(function () {
+  const marqueeContainer = document.getElementById('brandsMarquee');
+  if (!marqueeContainer) return;
+
+  const marqueeTrack = marqueeContainer.querySelector('.marquee-track');
+  if (!marqueeTrack) return;
+
+  let isHovered = false;
+  let autoScrollSpeed = 1.4; // Slightly faster speed as requested
+
+  // Animation values using CSS transforms for subpixel smoothness
+  let currentX = 0;
+  let targetX = 0;
+  let halfWidth = 0;
+
+  function updateWidth() {
+    if (marqueeTrack) {
+      halfWidth = marqueeTrack.scrollWidth / 2;
+    }
+  }
+
+  // Set initial halfWidth after content renders
+  setTimeout(updateWidth, 150);
+  window.addEventListener('load', updateWidth);
+  window.addEventListener('resize', updateWidth);
+
+  // Pause auto-scroll on hover (mouse only)
+  marqueeContainer.addEventListener('pointerenter', (e) => {
+    if (e.pointerType === 'mouse') {
+      isHovered = true;
+    }
+  });
+
+  marqueeContainer.addEventListener('pointerleave', (e) => {
+    if (e.pointerType === 'mouse') {
+      isHovered = false;
+    }
+  });
+
+  // Touch handlers to pause auto-scroll during touch interaction and handle swipe
+  let touchStartX = 0;
+  marqueeContainer.addEventListener('touchstart', (e) => {
+    isHovered = true;
+    if (e.touches.length > 0) {
+      touchStartX = e.touches[0].clientX;
+    }
+  }, { passive: true });
+
+  marqueeContainer.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      const touchX = e.touches[0].clientX;
+      const deltaX = touchX - touchStartX;
+      touchStartX = touchX;
+      targetX += deltaX * 1.3; // swipe sensitivity
+    }
+  }, { passive: true });
+
+  marqueeContainer.addEventListener('touchend', () => {
+    isHovered = false;
+  }, { passive: true });
+
+  // Convert vertical mouse scroll over marquee to horizontal scrolling
+  marqueeContainer.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaY) > 0) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Update targetX based on mouse scroll speed
+      targetX -= e.deltaY * 0.9;
+    }
+  }, { passive: false });
+
+  // Main animation loop
+  function updateMarquee() {
+    // If not hovered, auto-scroll left
+    if (!isHovered) {
+      targetX -= autoScrollSpeed;
+    }
+
+    // Lerp currentX towards targetX for ultra-smooth movement
+    currentX += (targetX - currentX) * 0.12;
+
+    // Handle seamless wrapping
+    if (halfWidth > 0) {
+      if (targetX <= -halfWidth) {
+        targetX += halfWidth;
+        currentX += halfWidth;
+      } else if (targetX > 0) {
+        targetX -= halfWidth;
+        currentX -= halfWidth;
+      }
+    }
+
+    // Apply translation style
+    marqueeTrack.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
+
+    requestAnimationFrame(updateMarquee);
+  }
+
+  // Start the animation loop
+  requestAnimationFrame(updateMarquee);
+})();
+

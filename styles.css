@@ -2604,6 +2604,11 @@ h6 {
     animation: swipeHint 1.4s cubic-bezier(0.25, 1, 0.5, 1) both;
   }
 
+  .marquee-wrapper::before,
+  .marquee-wrapper::after {
+    display: none !important;
+  }
+
   .counter-section {
     grid-template-columns: 1fr 1fr;
     gap: 24px;

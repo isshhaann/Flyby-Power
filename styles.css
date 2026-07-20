@@ -2577,8 +2577,10 @@ h6 {
   .testimonial-card,
   .brands-card,
   .solar-card {
-    flex: 0 0 290px !important;
-    scroll-snap-align: center !important;
+    flex: 0 0 78% !important;
+    max-width: 300px !important;
+    scroll-snap-align: start !important;
+    scroll-margin-left: 24px !important;
     margin-bottom: 0 !important;
     height: auto !important;
   }

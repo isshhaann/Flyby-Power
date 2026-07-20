@@ -2583,6 +2583,25 @@ h6 {
     height: auto !important;
   }
 
+  @keyframes swipeHint {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateX(-35px);
+    }
+    60% {
+      transform: translateX(6px);
+    }
+    85% {
+      transform: translateX(0);
+    }
+  }
+
+  .swipe-hint {
+    animation: swipeHint 1.4s cubic-bezier(0.25, 1, 0.5, 1) both;
+  }
+
   .counter-section {
     grid-template-columns: 1fr 1fr;
     gap: 24px;

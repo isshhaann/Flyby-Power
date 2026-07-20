@@ -1623,3 +1623,28 @@ document.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(updateMarquee);
 })();
 
+// ============================================
+// SWIPABLE HINT ON SCROLL OBSERVER (MOBILE ONLY)
+// ============================================
+(function () {
+  if (typeof window !== 'undefined') {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile && typeof IntersectionObserver !== 'undefined') {
+      const swipeContainers = document.querySelectorAll('.brands-grid, .trust-grid, .testimonials-carousel, .solar-showcase');
+      const swipeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('swipe-hint');
+            swipeObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      swipeContainers.forEach(container => {
+        swipeObserver.observe(container);
+      });
+    }
+  }
+})();
+
+

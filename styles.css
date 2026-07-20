@@ -2555,17 +2555,38 @@ h6 {
     grid-template-columns: 1fr;
   }
 
-  .trust-grid {
-    grid-template-columns: 1fr;
+  .trust-grid,
+  .testimonials-carousel,
+  .brands-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 20px !important;
+    padding: 12px 24px 24px 24px !important;
+    margin: 0 -24px 20px -24px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .trust-grid::-webkit-scrollbar,
+  .testimonials-carousel::-webkit-scrollbar,
+  .brands-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .trust-card,
+  .testimonial-card,
+  .brands-card {
+    flex: 0 0 290px !important;
+    scroll-snap-align: center !important;
+    margin-bottom: 0 !important;
+    height: auto !important;
   }
 
   .counter-section {
     grid-template-columns: 1fr 1fr;
     gap: 24px;
-  }
-
-  .testimonials-carousel {
-    grid-template-columns: 1fr;
   }
 
   .gallery-grid {
@@ -3908,9 +3929,7 @@ h6 {
 }
 
 @media (max-width: 640px) {
-  .brands-grid {
-    grid-template-columns: 1fr;
-  }
+  /* Handled by horizontal flex layout in 768px media query */
 }
 
 /* ── CARD ── */

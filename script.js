@@ -1407,12 +1407,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Distribute matching cards: first 4 in featured grid, remaining in extra grid
-    const featuredCards = activeCards.slice(0, 4);
-    const extraCards = activeCards.slice(4);
+    const isMobile = window.innerWidth <= 768;
+
+    // Distribute matching cards: on mobile, put all cards in main grid; on desktop, first 4
+    const featuredCards = isMobile ? activeCards : activeCards.slice(0, 4);
+    const extraCards = isMobile ? [] : activeCards.slice(4);
 
     featuredCards.forEach(function (card) {
       brandsGrid.appendChild(card);
+      // Restore src if it was lazy loaded
+      const img = card.querySelector('img');
+      if (img && card.dataset.src) {
+        img.src = card.dataset.src;
+        delete card.dataset.src;
+      }
     });
 
     extraCards.forEach(function (card) {
@@ -1433,15 +1441,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toggle button visibility and height
     const btnWrap = document.querySelector('.brands-btn-wrap');
-    if (activeCards.length > 4) {
-      if (btnWrap) btnWrap.style.display = 'block';
-      if (btnToggleBrands) {
-        btnToggleBrands.querySelector('.btn-text').textContent = 'View All ' + activeCards.length + ' Brands';
-      }
-      brandsExtraWrap.style.height = '0px';
-    } else {
+    if (isMobile) {
       if (btnWrap) btnWrap.style.display = 'none';
       brandsExtraWrap.style.height = '0px';
+    } else {
+      if (activeCards.length > 4) {
+        if (btnWrap) btnWrap.style.display = 'block';
+        if (btnToggleBrands) {
+          btnToggleBrands.querySelector('.btn-text').textContent = 'View All ' + activeCards.length + ' Brands';
+        }
+        brandsExtraWrap.style.height = '0px';
+      } else {
+        if (btnWrap) btnWrap.style.display = 'none';
+        brandsExtraWrap.style.height = '0px';
+      }
     }
 
     // ScrollTrigger refresh
@@ -1487,8 +1500,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Adjust expanded height dynamically on window resize
+  // Adjust expanded height and handle mobile/desktop card distribution transitions on window resize
+  let wasMobile = window.innerWidth <= 768;
   window.addEventListener('resize', function () {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile !== wasMobile) {
+      wasMobile = isMobile;
+      applyFilters();
+    }
     if (isExpanded && brandsExtraWrap.classList.contains('expanded')) {
       brandsExtraWrap.style.height = brandsGridExtra.scrollHeight + 'px';
     }

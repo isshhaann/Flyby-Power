@@ -2547,17 +2547,14 @@ h6 {
     gap: 40px;
   }
 
-  .solar-showcase {
-    grid-template-columns: 1fr;
-  }
-
   .services-grid {
     grid-template-columns: 1fr;
   }
 
   .trust-grid,
   .testimonials-carousel,
-  .brands-grid {
+  .brands-grid,
+  .solar-showcase {
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
@@ -2571,13 +2568,15 @@ h6 {
 
   .trust-grid::-webkit-scrollbar,
   .testimonials-carousel::-webkit-scrollbar,
-  .brands-grid::-webkit-scrollbar {
+  .brands-grid::-webkit-scrollbar,
+  .solar-showcase::-webkit-scrollbar {
     display: none !important;
   }
 
   .trust-card,
   .testimonial-card,
-  .brands-card {
+  .brands-card,
+  .solar-card {
     flex: 0 0 290px !important;
     scroll-snap-align: center !important;
     margin-bottom: 0 !important;

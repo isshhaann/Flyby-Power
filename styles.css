@@ -4441,46 +4441,53 @@ h6 {
   }
 
   .accordion-card {
-    height: 120px;
+    height: 180px; /* Much larger collapsed card height */
     flex: none;
     transition: height 600ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .accordion-card .card-bg-image {
     background-size: contain;
-    background-position: right 10px center;
-    background-size: 45%;
+    background-position: right 16px center;
+    background-size: 52%; /* Larger vehicle image shown properly */
   }
 
   .accordion-card .card-collapsed-logo {
     transform: none;
     left: 24px;
-    bottom: 24px;
-    font-size: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%); /* Centered vertically */
+    bottom: auto;
+    font-size: 1.4rem;
     color: #111111;
     width: auto;
-    max-width: 45%;
+    max-width: 42%;
     height: auto;
     margin-left: 0;
     display: block;
     white-space: normal;
-    line-height: 1.2;
+    line-height: 1.25;
   }
 
   .accordion-card .card-expanded-content {
     padding: 24px;
-    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 85%);
+    background: transparent; /* Transparent background to let gradient overlay work */
   }
 
   /* When expanded on mobile */
   .accordion-card.active {
-    height: 520px;
+    height: 580px; /* Much larger expanded card height */
   }
 
   .accordion-card.active .card-bg-image {
     transform: scale(1);
-    background-position: top 10px right 10px;
-    background-size: 46%;
+    background-position: center top 24px; /* Centered at the top, no overlap with text */
+    background-size: 80%; /* Shown clearly and properly */
+  }
+
+  .accordion-card.active .card-gradient {
+    opacity: 1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.95) 100%); /* Stronger vertical gradient for text readability */
   }
 
   .accordion-card.active .card-collapsed-logo {

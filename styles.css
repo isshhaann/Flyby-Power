@@ -4449,7 +4449,7 @@ h6 {
   .accordion-card .card-bg-image {
     background-size: contain;
     background-position: right 10px center;
-    background-size: 50%;
+    background-size: 45%;
   }
 
   .accordion-card .card-collapsed-logo {
@@ -4474,13 +4474,13 @@ h6 {
 
   /* When expanded on mobile */
   .accordion-card.active {
-    height: 480px;
+    height: 520px;
   }
 
   .accordion-card.active .card-bg-image {
     transform: scale(1);
-    background-position: top 20px right 20px;
-    background-size: 55%;
+    background-position: top 10px right 10px;
+    background-size: 46%;
   }
 
   .accordion-card.active .card-collapsed-logo {

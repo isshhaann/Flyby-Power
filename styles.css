@@ -4456,12 +4456,15 @@ h6 {
     transform: none;
     left: 24px;
     bottom: 24px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #111111;
     width: auto;
+    max-width: 45%;
     height: auto;
     margin-left: 0;
     display: block;
+    white-space: normal;
+    line-height: 1.2;
   }
 
   .accordion-card .card-expanded-content {

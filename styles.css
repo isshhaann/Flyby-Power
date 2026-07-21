@@ -4397,7 +4397,7 @@ h6 {
   .accordion-card.active {
     flex: 12;
     cursor: default;
-    background-color: #1A1A1A; /* Premium dark gray background */
+    background-color: #2C2C30; /* Premium gray background */
   }
   
   .accordion-card.active .card-bg-image {
@@ -4408,7 +4408,7 @@ h6 {
 
   .accordion-card.active .card-gradient {
     opacity: 1;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.1) 80%);
+    background: linear-gradient(90deg, rgba(44, 44, 48, 0.95) 0%, rgba(44, 44, 48, 0.82) 45%, rgba(44, 44, 48, 0.25) 80%);
   }
 
   .accordion-card.active .card-collapsed-logo {
@@ -4478,7 +4478,7 @@ h6 {
   /* When expanded on mobile */
   .accordion-card.active {
     height: 580px; /* Much larger expanded card height */
-    background-color: #1A1A1A; /* Premium dark gray background */
+    background-color: #2C2C30; /* Premium gray background */
   }
 
   .accordion-card.active .card-bg-image {
@@ -4489,7 +4489,7 @@ h6 {
 
   .accordion-card.active .card-gradient {
     opacity: 1;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.95) 100%); /* Stronger vertical gradient for text readability */
+    background: linear-gradient(180deg, rgba(44, 44, 48, 0) 15%, rgba(44, 44, 48, 0.85) 50%, rgba(44, 44, 48, 0.98) 100%); /* Stronger gray vertical gradient for text readability */
   }
 
   .accordion-card.active .card-collapsed-logo {

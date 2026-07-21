@@ -1647,4 +1647,48 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })();
 
+// ============================================
+// EV SHOWCASE ACCORDION INTERACTION
+// ============================================
+(function () {
+  const container = document.querySelector('.accordion-container');
+  if (!container) return;
+
+  const cards = container.querySelectorAll('.accordion-card');
+
+  // Handle desktop hover interactions
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) {
+        cards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      }
+    });
+  });
+
+  container.addEventListener('mouseleave', () => {
+    if (window.innerWidth > 768) {
+      cards.forEach(c => c.classList.remove('active'));
+      // Optional: keep first card active, or keep all collapsed as default
+      // The prompt says "Default State: Each card should be narrow" so collapsing is correct.
+    }
+  });
+
+  // Handle mobile click/touch interactions
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        // Prevent click if clicking direct link or child interactions that bubble
+        if (e.target.closest('.btn-explore')) return;
+
+        const isActive = card.classList.contains('active');
+        cards.forEach(c => c.classList.remove('active'));
+        if (!isActive) {
+          card.classList.add('active');
+        }
+      }
+    });
+  });
+})();
+
 
